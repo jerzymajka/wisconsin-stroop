@@ -77,7 +77,7 @@ const httpsServerOptions = {
     'key': fs.readFileSync(path.join(__dirname, '/CERT/key.pem')),
     'cert': fs.readFileSync(path.join(__dirname, 'CERT', 'cert.pem')),
 }
-const httpsServer = https.createServer(httpsServerOptions, function(req, res){
+/*const httpsServer = https.createServer(httpsServerOptions, function(req, res){
     const urlParsed = url.parse(req.url, true);
     const reqUrl = urlParsed.pathname;
     if(reqUrl.match("\.gif$")){
@@ -97,6 +97,6 @@ const httpsServer = https.createServer(httpsServerOptions, function(req, res){
 });
 httpsServer.listen(3001, function(){
     console.log('Server https start at port 3001')
-})
+})*/
 
 
