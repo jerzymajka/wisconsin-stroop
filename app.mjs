@@ -67,16 +67,20 @@ const server = http.createServer(function(req, res){
     }else{
         unifiedServer(req, res, urlParsed);
     }
-})
-server.listen(3000, function(){
+});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+server.listen(port, function(){
     console.log('Server start at port 3000')
 })
 
-const httpsServerOptions = {
+/*const httpsServerOptions = {
     'key': fs.readFileSync(path.join(__dirname, '/CERT/key.pem')),
     'cert': fs.readFileSync(path.join(__dirname, 'CERT', 'cert.pem')),
 }
-/*const httpsServer = https.createServer(httpsServerOptions, function(req, res){
+const httpsServer = https.createServer(httpsServerOptions, function(req, res){
     const urlParsed = url.parse(req.url, true);
     const reqUrl = urlParsed.pathname;
     if(reqUrl.match("\.gif$")){
