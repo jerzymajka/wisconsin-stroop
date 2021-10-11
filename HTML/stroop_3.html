@@ -57,7 +57,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: darkgray;">
     <div class="container" id="cont">
       <div id='wyniki'> <h2>Test Stroop'a - część druga</h2>
         <p>Część druga różni się od części pierwszej tylko tym, że słowa oznaczają kolory. Nie należy ich jednak czytać, tylko nazwać kolor czcionki, jakimi zostały wydrukowane.</p>
@@ -85,10 +85,14 @@
     const wordArr = [];
     const resultArr =[[' - ', ' - ', ' - ', ' - ', ' - '],
     [' - ', ' - ', ' - ', ' - ', ' - '],
+    [' - ', ' - ', ' - ', ' - ', ' - '],
+    [' - ', ' - ', ' - ', ' - ', ' - '],
     [' - ', ' - ', ' - ', ' - ', ' - ']];
-    const resultColor = [['white', 'white', 'white', 'white', 'white'], 
-    ['white', 'white', 'white', 'white', 'white'],
-    ['white', 'white', 'white', 'white', 'white']];
+    const resultColor = [['darkgray', 'darkgray', 'darkgray', 'darkgray', 'darkgray'], 
+    ['darkgray', 'darkgray', 'darkgray', 'darkgray', 'darkgray'],
+    ['darkgray', 'darkgray', 'darkgray', 'darkgray', 'darkgray'],
+    ['darkgray', 'darkgray', 'darkgray', 'darkgray', 'darkgray'],
+    ['darkgray', 'darkgray', 'darkgray', 'darkgray', 'darkgray']];
     const btnStart = document.getElementById('btnStart');
     const btnGotowe = document.getElementById('btnGotowe');
     const word = document.getElementById('word');
@@ -101,7 +105,7 @@
       }
     };
     const slucham = ()=>{
-      for(let i=0; i<3; i++){
+      for(let i=0; i<5; i++){
         randIndex();
         colorArr[i]= Array.from(colorIndex);
         wordArr[i]= Array.from(wordIndex);
@@ -117,9 +121,9 @@
     var speechRecognitionList = new SpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);
     recognition.grammars = speechRecognitionList;
-    recognition.continuous = false;
+    recognition.continuous = true;
     recognition.lang = 'pl';
-    recognition.interimResults = false;
+    recognition.interimResults = true;
     recognition.maxAlternatives = 1;
     const mojHtml = function(i){
         return `<h1 style="color: rgb(255, 255, 255); text-align:center;" font size="+5">
@@ -151,7 +155,7 @@
     const rezultatArr = moj_color.split(' ');
     let len = rezultatArr.length;
     let n = 0;
-    for(let i = 0; i<3; i++){
+    for(let i = 0; i<5; i++){
       for(let j = 0; j<5; j++){
         if(n<len){
           resultArr[i][j]='(' + rezultatArr[n]+ ')';
@@ -170,7 +174,7 @@
       }
     }
     html = '';
-    for(let i=0; i<3; i++){
+    for(let i=0; i<5; i++){
        html += mojHtml(i);
     }
       word.innerHTML=html;
@@ -191,18 +195,6 @@
       recognition.onresult = function(event) {
         moj_color =  event.results[0][0].transcript;
       }
-      recognition.onspeechend = function() {
-        
-        recognition.stop()
-      }
-      
-      recognition.onnomatch = function(event) {
-        console.log("Kolor z poza listy");
-      }
-      recognition.onerror = function(event) {
-        console.log('Błąd rozpoznawania mowy ' + event.error);
-      }
-
 </script>
 </body>
 </html>

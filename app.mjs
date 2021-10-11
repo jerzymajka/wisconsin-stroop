@@ -1,4 +1,3 @@
-//import https from 'https';
 import http from 'http';
 import url from 'url'
 import fs from 'fs'
@@ -53,18 +52,25 @@ const unifiedServer = function(req, res, urlParsed){
 const server = http.createServer(function(req, res){
     const urlParsed = url.parse(req.url, true);
     const reqUrl = urlParsed.pathname;
-    if(reqUrl.match("\.gif$")){
-        var imagePath = path.join(__dirname, 'gif', reqUrl);
-        var readStream = fs.createReadStream(imagePath);
-        readStream.on('open', function () {
-            res.writeHead(200, {"Content-Type": "image/gif"});
-            readStream.pipe(res);
-          });
-        readStream.on('error', function(err){
-            console.log(err);
-            res.end();
-          });
-    }else{
+    let extention = reqUrl.split('.')[1];
+    if(extention=='gif'){
+        fs.readFile(path.join(__dirname, './gif', reqUrl), (err, data)=>{
+            if(!err){
+                res.writeHead(200, {
+                    'Content-Type': 'image/gif'
+                })
+                res.write(data, 'utf8');
+                res.end();
+            }else{
+                res.writeHead(200, {
+                    'Content-Type': 'text/plain'
+                })
+                res.end('Problem z odczytaniem pliku. Jeśli problem będzie się powtarzał, skontaktuj się z jerzy.majka67@gmail.com');
+            }
+
+        });
+    }
+    else{
         unifiedServer(req, res, urlParsed);
     }
 });
@@ -76,30 +82,6 @@ server.listen(port, function(){
     console.log('Server start at port 3000')
 })
 
-/*const httpsServerOptions = {
-    'key': fs.readFileSync(path.join(__dirname, '/CERT/key.pem')),
-    'cert': fs.readFileSync(path.join(__dirname, 'CERT', 'cert.pem')),
-}
-const httpsServer = https.createServer(httpsServerOptions, function(req, res){
-    const urlParsed = url.parse(req.url, true);
-    const reqUrl = urlParsed.pathname;
-    if(reqUrl.match("\.gif$")){
-        var imagePath = path.join(__dirname, 'gif', reqUrl);
-        var readStream = fs.createReadStream(imagePath);
-        readStream.on('open', function () {
-            res.writeHead(200, {"Content-Type": "image/gif"});
-            readStream.pipe(res);
-          });
-        readStream.on('error', function(err){
-            console.log(err);
-            res.end();
-          });
-    }else{
-        unifiedServer(req, res, urlParsed);
-    }
-});
-httpsServer.listen(3001, function(){
-    console.log('Server https start at port 3001')
-})*/
+
 
 
