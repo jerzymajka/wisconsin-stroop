@@ -98,14 +98,14 @@
         </div>
     </form>
     <div class="grid-container">
-        <div class="grid-item"><img id = "gif" src="./redtriangle1_test.gif" height = "80%"></div>
+        <div class="grid-item"><img id = "gif" src="redtriangle1_test.gif" height = "80%" alt"obrazek"></div>
     </div>
     <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat" >Dobrze</h1>
     <div class="grid-container1">
-        <div class="grid-item" id="daa" onclick="getId(this)"><img src="./redtriangle1_test.gif"  height = "80%"></div>
-        <div class="grid-item" id="adb" onclick="getId(this)"><img src="./greenstar2_test.gif" height = "80%"></div>
-        <div class="grid-item" id="bcc" onclick="getId(this)"><img src="./yellowcross3_test.gif" height = "80%"></div>  
-        <div class="grid-item" id="cbd" onclick="getId(this)"><img src="./bluecircle4_test.gif" height = "80%"></div>
+        <div class="grid-item" id="daa" onclick="getId(this)"><img src="redtriangle1_test.gif"  height = "80%"></div>
+        <div class="grid-item" id="adb" onclick="getId(this)"><img src="greenstar2_test.gif" height = "80%"></div>
+        <div class="grid-item" id="bcc" onclick="getId(this)"><img src="yellowcross3_test.gif" height = "80%"></div>  
+        <div class="grid-item" id="cbd" onclick="getId(this)"><img src="bluecircle4_test.gif" height = "80%"></div>
     </div>`
     let gifIndex  = Math.floor(Math.random() * 24);
     const getId = (karta)=>{
@@ -128,7 +128,7 @@
               komunikat.innerText = "Błąd";
           }
           gifIndex  = Math.floor(Math.random() * 24);
-          gif.src = "./"+gifName[gifIndex];
+          gif.src = gifName[gifIndex];
       }
       const regula = {color:0, ksztalt:1, liczba:2};
       const sekwencja = [['color', 3], ['ksztalt', 4], ['color', 3],['liczba', 5], ['ksztalt', 4], ['liczba', 5]];
@@ -144,7 +144,7 @@
         document.getElementById('cont').innerHTML = myInnerHTML;
         const gif = document.getElementById("gif");
         const komunikat = document.getElementById("komunikat");
-        gif.src = "./"+gifName[gifIndex];
+        gif.src =gifName[gifIndex];
         const btnTest = document.getElementById("btnTest");
         btnTest.addEventListener("click", (e) =>{
             e.preventDefault();
