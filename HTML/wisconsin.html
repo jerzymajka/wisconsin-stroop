@@ -105,7 +105,7 @@
       const komunikat = document.getElementById("komunikat");
       const start = Date.now();
       let gifIndex  = Math.floor(Math.random() * 24);
-      obrazek.src = gifName[gifIndex];
+      obrazek.innerHTML = `<img src=${gifName[gifIndex]} alt="obr">`;
       const getId = (karta)=>{
           if(zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)){
               licznikTrafiony++;
@@ -147,7 +147,7 @@
               komunikat.innerText = "Błąd";
           }
           gifIndex  = Math.floor(Math.random() * 24);
-          obrazek.src = gifName[gifIndex];
+          obrazek.innerHTML = `<img src=${gifName[gifIndex]} alt="obr">`;
       }
     </script>
 </body>
