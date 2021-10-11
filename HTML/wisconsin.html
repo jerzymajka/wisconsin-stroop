@@ -105,8 +105,9 @@
       const komunikat = document.getElementById("komunikat");
       const start = Date.now();
       let gifIndex  = Math.floor(Math.random() * 24);
-      console.log(gifName[gifIndex])
-      obrazek.src="greenstar2_test.gif";
+      console.log(gifName[gifIndex]);
+      let obrStr = "greenstar2_test.gif"
+      obrazek.src= obrStr;
       const getId = (karta)=>{
           if(zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)){
               licznikTrafiony++;
