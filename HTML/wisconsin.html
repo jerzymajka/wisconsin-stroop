@@ -66,8 +66,7 @@
 <body>
     <div class="container" id="cont">
     <div class="grid-container">
-        <div class="grid-item" id="adb2" ><img src="greenstar2_test.gif" alt=""></div>
-        <div class="grid-item"><img id = "gif"src="redtriangle1_test.gif" alt="obrazek"></div>
+        <div class="grid-item" id="obrazek" ><img src="greenstar2_test.gif" alt="obr"></div>
     </div>
     <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat" >Dobrze</h1>
     <div class="grid-container1">
@@ -102,11 +101,11 @@
           console.log(href);
           window.location.replace(href.replace('wisconsint', 'testy'));
       }
-      const gif = document.getElementById("gif");
+      const obrazek = document.getElementById("obrazek");
       const komunikat = document.getElementById("komunikat");
       const start = Date.now();
       let gifIndex  = Math.floor(Math.random() * 24);
-      gif.src = gifName[gifIndex];
+      obrazek.src = gifName[gifIndex];
       const getId = (karta)=>{
           if(zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)){
               licznikTrafiony++;
@@ -148,7 +147,7 @@
               komunikat.innerText = "Błąd";
           }
           gifIndex  = Math.floor(Math.random() * 24);
-          gif.src = gifName[gifIndex];
+          obrazek.src = gifName[gifIndex];
       }
     </script>
 </body>
