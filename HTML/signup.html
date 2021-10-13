@@ -81,13 +81,13 @@ button:hover {
                     pwd: document.getElementById('pwd').value,
                 }
                 if(formData.email.length < 6){
-                    alert[0].innerHTML = "<p>Przykro mi, ale nazwa użytkownika musi zawierć przynajmniej 6 znaków</p>"
+                    alert[0].innerHTML = "<p>Przykro mi, ale nazwa użytkownika musi zawierć przynajmniej 6.</p>"
                 }    
                 else if(formData.pwd.length < 4){
-                    alert[0].innerHTML = "<p>Przykro mi, ale hasło musi zawierć przynajmniej 4 znaki</p>"
+                    alert[0].innerHTML = "<p>Przykro mi, ale hasło musi zawierć przynajmniej 4 znaki.</p>"
                 }
                 else if(!check[0].checked){
-                    alert[0].innerHTML = "<p>Przykro mi, ale musisz zaznaczyć zgodę na udział w badaniu.</p>"
+                    alert[0].innerHTML = "<p>Przykro mi, ale musisz zaznaczyć: 'Wyrażam zgodę na wzięcie udziłu w badaniu'.</p>"
                 }
                 else{
                     const body = formData;
@@ -102,7 +102,7 @@ button:hover {
                                 window.location.replace(base_url+'login')
                             }else if(res.status==403) {
                                 console.log('zly email');
-                                alert[0].innerHTML = "<p>Przykro mi, ale taki użytkownik już istnieje</p>"
+                                alert[0].innerHTML = "<p>Przykro mi, ale taki użytkownik już istnieje.</p>"
                             }else{
                                 console.log('problem z serwerem');
                                 window.location.replace(base_url);

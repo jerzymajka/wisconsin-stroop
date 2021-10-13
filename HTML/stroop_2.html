@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test sortowania kart z Wisconsin</title>
+    <title>Test Stroop'a - trening</title>
     <style>
         .grid-container {
           display: grid;
@@ -60,9 +60,9 @@
 <body>
   <a href="home">home</a>
     <div class="container" id="cont">
-      <div id='wyniki'> <h2>Test Stroop'a - część pierwsza</h2>
+      <div id='wyniki'> <h2>Test Stroop'a - trening</h2>
         <p>Poniżej widzisz 10 słów napisanych czcionką w kolorach: żółty, czarny, czerwony, zielony, niebieski. </p>
-        <p>Nie czytaj słów, tylko nazwij po kolei kolory. Staraj się mówić głośno i wyraźnie, ale tak szybko, jak możesz. Np. wymienieni kolorów poniższych słów nie powinno Ci zająć więcej niż 10 sekund.</p>
+        <p>Nie czytaj słów, tylko nazwij po kolei kolory. Staraj się mówić głośno i wyraźnie, ale tak szybko, jak możesz.</p>
         <p>Jeśli się pomylisz, nie poprawiaj się, kontynuuj nazywanie. </p>
         <p>Przed rozpoczęciem aplikacja poprosi Cię o pozwolnie na skorzystanie z Twojego mikrofonu.</p>
         <p>Aby rozpocząć kliknij <span style="font-size:125%; color: rgb(85, 106, 226);">Start</span>.</p>
@@ -137,15 +137,15 @@
           <span style="color:${colors[colorArr[i][3]]}">${words[wordArr[i][3]]}</span> <span style="color:${resultColor[i][3]}">${resultArr[i][3]}</span>
           <span style="color:${colors[colorArr[i][4]]}">${words[wordArr[i][4]]}</span> <span style="color:${resultColor[i][4]}">${resultArr[i][4]}</span></h1>`
     }
-  const htmlWyniki = `<h2>Test Stroop'a, część pierwsza - przegląd wyników</h2>
+  const htmlWyniki = `<h2>Test Stroop'a, trening - przegląd wyników</h2>
   <p>Poniżej w nawiasach podane są Twoje odpowiedzi. </p>
   <p>Jeśli odpowiedź była prawidłowa, tekst w nawiasie jest na czarno, jeśli była błędna – na czerwono. </p>
   <p>Słowo "brak" oznacza brak odpowiedzi lub słowo nierozpoznane przez program.</p>
   <p>Sprawdź, czy podane w nawiasach odpowiedzi zgadzają się z Twoimi oczekiwaniami. Może wystąpiły jakieś zakłócenia lub dwa razy powtórzyłeś to samo słowo?</p>
-  <p>Jeśli nie było techniczny zakłóceń i wydaje Ci się, że właściwie zrozumiałeś zasady, przystąp do właściwego testu.</p>
+  <p>Jeśli nie było techniczny zakłóceń i sądzisz, że dobrz rozumiesz zasady, przystąp do pierwszej części właściwego testu.</p>
   <p>Jeśli masz jakieś wątpliwość, możesz powtórzyć test treningowy.</p>
-  <p>Samo występowanie błędów (jeśli były one wynikiem Twojej własnej pomyłki, a nie zakłóceń) nie oznacza, że test należy powtórzyć.</p> `
-  const htmlGuziki = `<button class="btn" id="btnPowtorz">Powtórz trening</button> <button class="btn" id="btnKoniec">Rozpocznij test właściwy</button>`
+  <p>Samo występowanie błędów (jeśli były one wynikiem Twojej własnej pomyłki, a nie zakłóceń) nie oznacza, że test należy powtórzyć trening.</p> `
+  const htmlGuziki = `<button class="btn" id="btnPowtorz">Powtórz trening</button> <button class="btn" id="btnKoniec">Rozpocznij część pierwszą</button>`
   let html = '';
   let moj_color = '';    
   document.addEventListener('DOMContentLoaded', (event) => {

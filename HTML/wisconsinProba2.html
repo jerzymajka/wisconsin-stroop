@@ -79,7 +79,7 @@
 <body>
     <a href="home">home</a>
     <div class="container" id="cont">
-        <p>Pozostało <span class="name" id="powt"> 5 </span> zmian reguły do zakończenia testu.</p>
+        <p>Pozostało <span class="name" id="powt"> 1 </span> zmian reguły do zakończenia treningu.</p>
         <p>Liczba prawidłowych odpowiedzi z rzędu: <span class="name" id="rzad"> 0. </span></p>
         <p id="czas"></p>
         <div class="grid-container">
@@ -92,7 +92,7 @@
             <div class="grid-item" id="bcc" onclick="getId(this)"><img src="yellowcross3_test.gif" height="80%"></div>
             <div class="grid-item" id="cbd" onclick="getId(this)"><img src="bluecircle4_test.gif" height="80%"></div>
         </div>
-    </div>
+     </div>
     <script>
         const gifName = ["GreenTriangle3.gif", "GreenTriangle4.gif", "YellowTriangle2.gif", "YellowTriangle4.gif",
             "BlueTriangle2.gif", "BlueTriangle3.gif", "RedStar3.gif", "RedStar4.gif",
@@ -169,12 +169,12 @@
             }
         ]
         const sekwencja = [
-            ['color', 8],
-            ['ksztalt', 9],
-            ['color', 8],
-            ['liczba', 10],
-            ['ksztalt', 9],
-            ['liczba', 10]
+            ['color', 3],
+            ['ksztalt', 4],
+            ['color', 3],
+            ['liczba', 5],
+            ['ksztalt', 4],
+            ['liczba', 5]
         ];
         let licznikTrafiony = 0;
         let licznikSekwencja = 0;
@@ -196,7 +196,7 @@
         }
         const href = window.location.href;
         const gotowe = function () {
-            window.location.replace(href.replace('wisconsint', 'testy'));
+            window.location.replace(href.replace('wisconsinp2', 'wisconsint'));
         }
         const obrazek = document.getElementById("obrazek");
         const komunikat = document.getElementById("komunikat");
@@ -209,9 +209,9 @@
         obrazek.src = obrStr;
         const koniec = function () {
             rezultaty[licznikSekwencja].regula = sekwencja[aktualnyRegula][0];
-            rezultaty[licznikSekwencja].liczbaPowt = sekwencja[aktualnyRegula][1]+1;
+            rezultaty[licznikSekwencja].liczbaPowt = sekwencja[aktualnyRegula][1] + 1;
             rezultaty[licznikSekwencja].bledyOgulem = licznikBladSerii;
-            rezultaty[licznikSekwencja].bledyPers = licznikBladPers == 0 ? 0 : licznikBladPers-1;
+            rezultaty[licznikSekwencja].bledyPers = licznikBladPers == 0 ? 0 : licznikBladPers - 1;
             rezultaty[licznikSekwencja].bledyZachRegul = licznikBladZach;
             rezultaty[licznikSekwencja].czas = czas(Date.now() - start);
             start = Date.now();
@@ -225,40 +225,34 @@
             if (aktualnyRegula == 6) {
                 aktualnyRegula = 0;
             }
-            if (licznikSekwencja == 6){
+            if (licznikSekwencja == 2) {
                 let czas = Date.now() - startOg;
-                console.log(rezultaty)
-                fetch(href, {
-                    method: 'post',
-                    body: JSON.stringify(rezultaty),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                }).then(res => {
-                    if (res.status == 200) {
-                        document.getElementById('cont').innerHTML = `<h1>Twoje rezultaty:</h1>
-                                    <h2>Ilość błędów: ${licznikBlad}</h2>
-                                    <h2>Czas w sekundach: ${Math.floor(czas/1000)}</h2>
-                                    <div class="form-group">
-                                    <button class="btn" type="submit" onclick="gotowe()">Gotowe</button></div>`;
-                    }
-                }).catch((err) => {
-                    document.getElementById('cont').innerHTML = `<h2>Wystąpił błąd</h2>
-                                    <h3>${err}</h3>
-                                    <h3>Spróbuj powtórzyć test, jeśli to nie pomoże, skontaktuj się ze mną:</h3>
-                                    <h3>jerzymajka67@gmail.com</h2>`
-                })
-            }
+                document.getElementById('cont').innerHTML = `<h1>Twoje rezultaty:</h1>
+                    <h2>Ilość błędów: ${licznikBlad}</h2>
+                    <h2>Czas w sekundach: ${Math.floor(czas/1000)}</h2>
+                    <div class="form-group">
+                    <p>Jeśli dobrze zrozumiałeś reguły, przystąp do właściwego testu.</p>
+                    <p>Jeśli masz wątpliwość, możesz powtórzyć trening.</p>
+                    <br>
+                    <br>
+                    <div id="guziki" style='text-align:center'><button class="btn" id="btnTrening">Powtórz Trening</button> <button class="btn" id="btnTest">Rozpocznij Test</button></div>`;
+                    document.getElementById('btnTrening').addEventListener('click', ()=>{
+                        location.reload();
+                    });
+                    document.getElementById('btnTest').addEventListener('click', ()=>{
+                        gotowe();
+                    })
+                }
         }
         const getId = (karta) => {
-            if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)){
+            if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
                 licznikTrafiony++;
                 trafiony = false;
                 bladZach = false;
                 rzad.innerHTML = licznikTrafiony;
-                if (licznikTrafiony > sekwencja[aktualnyRegula][1]){
+                if (licznikTrafiony > sekwencja[aktualnyRegula][1]) {
                     rezultaty[licznikSekwencja].ukonczono = true;
-                    trafiony =true;
+                    trafiony = true;
                     koniec();
                 }
                 komunikat.style = "color: rgb(15, 238, 23); text-align: center;"
@@ -267,14 +261,13 @@
                 rzad.innerHTML = licznikTrafiony;
                 if (licznikBladSerii > 20) {
                     koniec();
-                }
-                else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id)&& trafiony){
+                } else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
                     licznikBladPers++;
 
-                    console.log('błąd pereseverancji: '+licznikBladPers);
-                }else{
+                    console.log('błąd pereseverancji: ' + licznikBladPers);
+                } else {
                     trafiony = false;
-                    if (licznikTrafiony > 5 || bladZach){
+                    if (licznikTrafiony > 5 || bladZach) {
                         licznikBladZach++;
                         bladZach = true;
                         console.log('bląd zachowania reguły: ' + licznikBladZach);
@@ -286,7 +279,7 @@
                 console.log(licznikBladSerii);
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
                 komunikat.innerText = "Błąd";
-                powt.innerHTML = 5 - licznikSekwencja;
+                powt.innerHTML = 1 - licznikSekwencja;
             }
             gifIndex = Math.floor(Math.random() * 24);
             obrazek.src = gifName[gifIndex].toLowerCase();

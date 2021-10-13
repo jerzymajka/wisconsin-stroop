@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Stroop'a - część pierwsza</title>
+  <title>Test Stroop'a - część druga</title>
   <style>
     .container {
       margin-top: 15pt;
@@ -16,7 +16,7 @@
     .btn {
       font-size: large;
       font-weight: bold;
-      width: 200px;
+      width: 250px;
       padding: 15px;
       margin: 15px;
       background: rgb(223, 223, 223);
@@ -37,7 +37,7 @@
   <a href="home">home</a>
   <div class="container" id="cont">
     <div id='wyniki'>
-      <h2>Test Stroop'a - część pierwsza</h2>
+      <h2>Test Stroop'a - część druga</h2>
     </div>
     <h3 id="clock" style='margin-left: 5%; font-size: large; font-weight: bold; color: rgb(64, 92, 119)'></h3>
     <div id="word" style="background-color: rgb(223, 223, 223);"></div>
@@ -45,9 +45,10 @@
     <div id="guziki2" style='text-align: center;'></div>
   </div>
   <script>
-    const words = ['sztafeta', 'listonosz', 'najwyższy', 'źródło', 'wieloryb', 'gwiazda', 'gramatyka', 'zabawnie',
-      'jezdnia', 'długopis'
+    const words = ['żółty', 'zielony', 'czerwony', 'czarny', 'niebieski', 'biały', 'pomarańczowy', 'fioletowy',
+      'brązowy', 'różowy'
     ];
+
     const str = window.location.href;
     let st = str.lastIndexOf('/')
     let end = str.indexOf('?')
@@ -128,11 +129,11 @@
           <span style="color:${colors[colorArr[i][3]]}">${words[wordArr[i][3]]}</span> <span style="color:${resultColor[i][3]}">${resultArr[i][3]}</span>
           <span style="color:${colors[colorArr[i][4]]}">${words[wordArr[i][4]]}</span> <span style="color:${resultColor[i][4]}">${resultArr[i][4]}</span></h1>`
     }
-    const htmlWyniki = `<h2>Test Stroop'a: podsumowanie wyników pierwszej części</h2>
-  <p>Sprawdź wyniki. Jeśli nie było problemów technicznych - przystąp od razu do części drugiej.</p>
-  <p>W razie konieczności - powtórz część pierwszą.</p>`
+    const htmlWyniki = `<h2>Test Stroop'a: podsumowanie wyników drugie części</h2>
+  <p>Sprawdź wyniki. Jeśli nie było problemów technicznych, kliknij: "Zakończ Test".</p>
+  <p>W razie konieczności - powtórz część drugą.</p>`
     const htmlGuziki =
-      `<button class="btn" id="btnPowtorz">Powtórz część pierwszą</button> <button class="btn" id="btnKoniec">Przystąp do części drugiej</button>`
+      `<button class="btn" id="btnPowtorz">Powtórz Część Drugą</button> <button class="btn" id="btnKoniec">Zakończ Test</button>`
     let html = '';
     let moj_color = '';
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -190,7 +191,7 @@
             },
           }).then(res => {
             if (res.status == 200) {
-              window.location.replace(base + '/stroop_4' + query);
+              window.location.replace(base + '/testy' + query);
             }
           }).catch((err) => {
             document.getElementById('cont').innerHTML = `<h2>Wystąpił błąd</h2>
@@ -202,6 +203,7 @@
         btnPowtorz.addEventListener('click', () => {
           location.reload();
         })
+      
       }, 300)
     })
     recognition.onresult = function (event) {

@@ -17,9 +17,11 @@ const router = {
     'signup': handlers.signup,
     'wisconsint': handlers.wisconsint,
     'wisconsinp': handlers.wisconsinp,
+    'wisconsinp2': handlers.wisconsinp2,
     'stroop_1': handlers.stroop_1,
     'stroop_2': handlers.stroop_2,
     'stroop_3': handlers.stroop_3,
+    'stroop_4': handlers.stroop_4,
     'results' : handlers.results,
     'home' : handlers.home
 }
@@ -52,6 +54,9 @@ const unifiedServer = function(req, res, urlParsed){
 const server = http.createServer(function(req, res){
     const urlParsed = url.parse(req.url, true);
     const reqUrl = urlParsed.pathname;
+    //console.log(req.url);
+    //console.log(req.method)
+    //console.log(reqUrl);
     let extention = reqUrl.split('.')[1];
     if(extention=='gif'){
         fs.readFile(path.join(__dirname, './gif', reqUrl), (err, data)=>{

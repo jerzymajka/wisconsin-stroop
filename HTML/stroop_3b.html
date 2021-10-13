@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Stroop'a - część pierwsza</title>
+  <style>
+    .container {
+      margin-top: 15pt;
+      margin-left: 5%;
+      margin-right: 10%;
+    }
+
+    .btn {
+      font-size: large;
+      font-weight: bold;
+      width: 200px;
+      padding: 15px;
+      margin: 15px;
+      background: rgb(223, 223, 223);
+      color: rgb(64, 92, 119);
+      border: solid 3px rgb(64, 92, 119);
+      cursor: pointer;
+      transition: all 0.38s ease-in-out;
+    }
+
+    button:hover {
+      background: rgb(74, 83, 92);
+      color: rgb(217, 225, 236);
+    }
+  </style>
+</head>
+
+<body style="background-color: rgb(223, 223, 223);">
+  <a href="home">home</a>
+  <div class="container" id="cont">
+    <h2>Test Stroop'a - część pierwsza</h2>
+    <br>
+    <br>
+    <h3>Wykonałeś już część pierwszą.</h3>
+    <h3>Możesz teraz przystąpić bezpośrednio do część drugiej.</h3>
+    <br>
+    <br>
+    <div id="guziki" style='margin-left: 65%'><button class="btn" id="btnGotowe">Rozpocznij część drugą</button></div>
+  </div>
+  <script>
+    const str = window.location.href;
+    let st = str.lastIndexOf('/')
+    let end = str.indexOf('?')
+    let base = str.slice(0, st);
+    let query = str.slice(end);
+    const btnGotowe = document.getElementById('btnGotowe');
+    btnGotowe.addEventListener('click', () => {
+      window.location.replace(base + '/stroop_4' + query);
+    });
+  </script>
+</body>
+
+</html>

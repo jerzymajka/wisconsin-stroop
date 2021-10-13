@@ -92,10 +92,10 @@
                                 return res.json();
                             }else if(res.status==403) {
                                 console.log('zly email');
-                                alert[0].innerHTML = "<p>Przykro mi, ale taki użytkownik nie jest jeszcze zarejestrowany</p>"
+                                alert[0].innerHTML = "<p>Przykro mi, ale taki użytkownik nie jest jeszcze zarejestrowany.</p>"
                             }else if(res.status==401) {
                                 console.log('zly password');
-                                alert[0].innerHTML = "<p>Przykro mi, ale hasło jest niewłaściwe</p>"
+                                alert[0].innerHTML = "<p>Przykro mi, ale hasło jest niewłaściwe.</p>"
                             }else{
                                 console.log('problem z serwerem');
                                 window.location.replace(base_url+'home');
