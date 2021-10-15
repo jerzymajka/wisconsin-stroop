@@ -1,90 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test sortowania kart z Wisconsin</title>
-    <style>
-        .grid-container {
-          display: grid;
-          grid-template-columns: auto;
-          background-color: #ebf0f3;
-          padding: 0px;
-        }
-        .grid-container1 {
-          display: grid;
-          grid-template-columns: auto auto auto auto;
-          background-color: #ebf0f3;
-          padding: 0px;
-        }
-        .grid-item {
-          background-color: rgba(255, 255, 255, 0.8);
-          border: 0px solid rgba(255, 255, 255, 0.479);
-          padding: 0px;
-          font-size: 30px;
-          text-align: center;
-        }
-        .container {
-        margin-top: 15pt;
-        margin-left: 15%;
-        margin-right: 15%;
-        }
-        .form-group {
-        margin: 10px;
-        }
-        .alert {
-        color: red;
-        }
-        .in {
-        width: 50%;
-        border: solid 1px #eee;
-        padding: 15px 10px;
-        }
-        .btn {
-        width: 200px;
-        padding: 15px;
-        margin: 15px;
-        background: rgb(255, 255, 255);
-        color: dodgerblue;
-        border: solid 1px dodgerblue;
-        cursor: pointer;
-        transition: all 0.38s ease-in-out;
-        }
-       button:hover {
-        background: dodgerblue;
-        color: rgb(217, 225, 236);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test sortowania kart z Wisconsin</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto;
+      background-color: #ebf0f3;
+      padding: 0px;
+    }
+
+    .grid-container1 {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      background-color: #ebf0f3;
+      padding: 0px;
+    }
+
+    .grid-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 0px solid rgba(255, 255, 255, 0.479);
+      padding: 0px;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 15pt;
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+
+    .form-group {
+      margin: 10px;
+    }
+
+    .alert {
+      color: red;
+    }
+
+    .in {
+      width: 50%;
+      border: solid 1px #eee;
+      padding: 15px 10px;
+    }
+
+    .btn {
+      width: 200px;
+      padding: 15px;
+      margin: 15px;
+      background: rgb(255, 255, 255);
+      color: dodgerblue;
+      border: solid 1px dodgerblue;
+      cursor: pointer;
+      transition: all 0.38s ease-in-out;
+    }
+
+    button:hover {
+      background: dodgerblue;
+      color: rgb(217, 225, 236);
+    }
+  </style>
 </head>
+
 <body>
-    <a href="home">home</a>
-    <div class="container" id="cont">
-        <h2>Test Sortowania Kart z Wisconsin</h2>
-        <p>Test Sortowania Kart z Wisconsin służy do pomiaru funkcji wykonawczych rozumianych jako funkcje nadzorcze, kontrolujące i kierujące poznawczą aktywnością człowieka.</p>
-        <p>W wersji oryginalnej składa się z dwóch talii liczących po 64 karty. Zadanie osoby badanej polega na dopasowaniu każdej karty z talii do jednej z czterech kart wzorcowych. Badany musi sam określić regułę sortowania, wykorzystując otrzymywaną po każdej reakcji informację, czy jego odpowiedź była poprawna, czy błędna.</p>
-        <p>W prezentowanej tu wersji skróconej talia składa się z 24 kart, które prezentowane są w sposób losowy. Reguła zmienia się, jeśli badany 9 do 11 razy prawidłowo dobierze kartę 
-          lub jeśli popełni więcej niż 20 błędów w jednej serii. Test kończy się po sześciu zmianach reguły, tzn. dwukrotnie regułą jest kolor, dwukrotnie kształt i dwukrotnie liczba elementów na karcie. Rejestrowany jest czas oraz ilość popełnianych błędów. </p>
-        <p>Przed przystąpieniem do wykonania właściwego testu można skorzystać z testu treningowego.</p>
-        <p>W teście treningowym reguła zmienia się tylko raz, a ilość prezentowanych kart w serii wynosi od 4 do 6.</p>
-        <br>
-        <br>
-        <form role="form">
-            <div class="form-group">
-                <button class="btn" type="submit" id="btnProba">Przystąp do testu próbnego</button>
-            </div>
-        </form>
-    </div>
-    <script>
-      const str = window.location.href;
-        let st = str.lastIndexOf('/')
-        let end = str.indexOf('?')
-        let base = str.slice(0, st);
-        let query = str.slice(end);
-    document.getElementById('btnProba').addEventListener("click", (e) =>{
-        e.preventDefault();
-        window.location.replace(base+ '/wisconsinp2'+query);
+  <a href="home">home</a>
+  <div class="container" id="cont">
+    <h2>Test Sortowania Kart z Wisconsin</h2>
+    <p>Test Sortowania Kart z Wisconsin służy do pomiaru funkcji wykonawczych rozumianych jako funkcje nadzorcze,
+      kontrolujące i kierujące poznawczą aktywnością człowieka.</p>
+    <p>W wersji oryginalnej składa się z dwóch talii liczących po 64 karty. Zadanie osoby badanej polega na dopasowaniu
+      każdej karty z talii do jednej z czterech kart wzorcowych. Badany musi sam określić regułę sortowania,
+      wykorzystując otrzymywaną po każdej reakcji informację, czy jego odpowiedź była poprawna, czy błędna.</p>
+    <p>W prezentowanej tu wersji skróconej talia składa się z 24 kart, które prezentowane są w sposób losowy. Reguła
+      zmienia się, jeśli badany 9 do 11 razy prawidłowo dobierze kartę
+      lub jeśli popełni więcej niż 20 błędów w jednej serii. Test kończy się po sześciu zmianach reguły, tzn. dwukrotnie
+      regułą jest kolor, dwukrotnie kształt i dwukrotnie liczba elementów na karcie. Rejestrowany jest czas oraz ilość
+      popełnianych błędów. </p>
+    <p>Przed przystąpieniem do wykonania właściwego testu można skorzystać z testu treningowego.</p>
+    <p>W teście treningowym reguła zmienia się tylko raz, a ilość prezentowanych kart w serii wynosi od 4 do 6.</p>
+    <br>
+    <br>
+    <form role="form">
+      <div class="form-group">
+        <button class="btn" type="submit" id="btnProba">Przystąp do testu próbnego</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    const str = window.location.href;
+    let st = str.lastIndexOf('/')
+    let end = str.indexOf('?')
+    let base = str.slice(0, st);
+    let query = str.slice(end);
+    document.getElementById('btnProba').addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.replace(base + '/wisconsinp2' + query);
     })
-    </script>
+  </script>
 </body>
+
 </html>

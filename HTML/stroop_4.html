@@ -160,10 +160,10 @@
         for (let i = 0; i < 5; i++) {
           for (let j = 0; j < 5; j++) {
             if (n < len) {
-              resultArr[i][j] = '(' + rezultatArr[n] + ')';
+              resultArr[i][j] = '(<i><u>' + rezultatArr[n] + '</u></i>)';
               resultColor[i][j] = 'black';
               if (!rezultatArr[n].includes(kolorySkr[colorArr[i][j]])) {
-                resultArr[i][j] = '(' + rezultatArr[n] + ')';
+                resultArr[i][j] = '(<i><u>' + rezultatArr[n] + '</u></i>)';
                 resultColor[i][j] = 'red';
                 licznikBlad++;
               }

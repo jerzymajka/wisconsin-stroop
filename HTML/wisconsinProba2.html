@@ -25,7 +25,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             border: 0px solid rgba(255, 255, 255, 0.479);
             padding: 0px;
-           
+
             text-align: center;
         }
 
@@ -83,7 +83,7 @@
             </span> serii (zmian reguły) do zakończenia testu.</p>
         <p>Liczba prawidłowych odpowiedzi z rzędu: <span class="name" id="rzad"> 0 </span> . Liczba błędów: <span
                 class="name" id="blad"> 0 </span>. </p>
-        <p class="name"id="czas"></p>
+        <p class="name" id="czas"></p>
         <div class="grid-container">
             <div class="grid-item"><img src="greenstar2_test.gif" alt="obr" id="obrazek" height="80%"></div>
         </div>
@@ -207,8 +207,8 @@
         let start = Date.now();
         let startOg = Date.now();
         const czas1 = document.getElementById('czas');
-        setInterval(()=>{
-            czas1.innerText = 'Czas: '+ czas(Date.now()-startOg);
+        setInterval(() => {
+            czas1.innerText = 'Czas: ' + czas(Date.now() - startOg);
         }, 100)
         let gifIndex = Math.floor(Math.random() * 24);
         let obrStr = gifName[gifIndex].toLowerCase();
@@ -278,14 +278,14 @@
                 }
                 licznikTrafiony = 0;
                 rzad.innerHTML = licznikTrafiony;
-                document.getElementById('blad').innerText = licznikBlad+1;
+                document.getElementById('blad').innerText = licznikBlad + 1;
                 licznikBlad++;
                 licznikBladSerii++;
                 document.getElementById('blad').innerText = licznikBladSerii;
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
                 komunikat.innerText = "Błąd";
                 powt.innerHTML = 1 - licznikSekwencja;
-                document.getElementById('ser').innerText = licznikSekwencja+1;
+                document.getElementById('ser').innerText = licznikSekwencja + 1;
             }
             gifIndex = Math.floor(Math.random() * 24);
             obrazek.src = gifName[gifIndex].toLowerCase();

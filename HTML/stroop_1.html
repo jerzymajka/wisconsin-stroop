@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Stroop'a</title>
     <style>
-       .container {
+        .container {
             margin-top: 15pt;
             margin-left: 15%;
             margin-right: 15%;
         }
+
         .btn {
             width: 200px;
             padding: 15px;
@@ -21,39 +23,43 @@
             cursor: pointer;
             transition: all 0.38s ease-in-out;
         }
+
         button:hover {
             background: dodgerblue;
             color: rgb(217, 225, 236);
         }
     </style>
 </head>
+
 <body>
     <a href="home">home</a>
     <div class="container" id="cont">
         <h2>Test Stroop'a</h2>
-        <p>Test Ridleya Stroopa służy do mierzenia funkcji poznawczych człowieka, m.in.: koncentracji i samokontroli.</p>
+        <p>Test Ridleya Stroopa służy do mierzenia funkcji poznawczych człowieka, m.in.: koncentracji i samokontroli.
+        </p>
         <p>Test w zaprezentowanej tu wersji składa się z dwóch części.</p>
         <p>Pierwsza część polega na nazwaniu koloru czcionki 25 neutralnych słów, jakie pojawią się na ekranie. Np.:</p>
         <div style="background-color: darkgray;">
             <h1 style="color: rgb(255, 255, 255); text-align:center;" font size="+5">
-            <span style="color:blue">listonosz </span> 
-            <span style="color:yellow">najwyższy </span> 
-            <span style="color:blue">źródło </span> 
-            <span style="color:green">wieloryb </span> 
-            <span style="color:red">gramatyka </span></h1>
-      </div>
+                <span style="color:blue">listonosz </span>
+                <span style="color:yellow">najwyższy </span>
+                <span style="color:blue">źródło </span>
+                <span style="color:green">wieloryb </span>
+                <span style="color:red">gramatyka </span></h1>
+        </div>
         <p>Druga część jest bardzo podobna, ale tym razem słowa będą oznaczać barwy. Np.:</p>
         <div style="background-color: darkgray;">
             <h1 style="color: rgb(255, 255, 255); text-align:center;" font size="+5">
-            <span style="color:green">brązowy </span> 
-            <span style="color:yellow">fioletowy </span> 
-            <span style="color:red">żółty </span> 
-            <span style="color:black">czarny </span> 
-            <span style="color:blue">zielony </span></h1>
+                <span style="color:green">brązowy </span>
+                <span style="color:yellow">fioletowy </span>
+                <span style="color:red">żółty </span>
+                <span style="color:black">czarny </span>
+                <span style="color:blue">zielony </span></h1>
         </div>
-        <p>Rejestrowana jest różnica czasu wykonania i ilości popełnionych błędów pomiędzy częścią drugą a pierwszą. 
-            Zakłada się bowiem, że większość ludzi posiada wyuczoną tendencję czytania tekstu, a co za tym idzie, 
-            nazwanie koloru jakim dane słowo zostało napisane będzie wymagać dodatkowego wysiłku wyhamowania tej tendencji, a więc również dodatkowego czasu.</p>
+        <p>Rejestrowana jest różnica czasu wykonania i ilości popełnionych błędów pomiędzy częścią drugą a pierwszą.
+            Zakłada się bowiem, że większość ludzi posiada wyuczoną tendencję czytania tekstu, a co za tym idzie,
+            nazwanie koloru jakim dane słowo zostało napisane będzie wymagać dodatkowego wysiłku wyhamowania tej
+            tendencji, a więc również dodatkowego czasu.</p>
         <br>
         <p>Przed rozpoczęciem właściwego testu możesz skorzystać z krótkiego (10 słów) test treningowego.</p>
         <br>
@@ -70,10 +76,11 @@
         let end = str.indexOf('?')
         let base = str.slice(0, st);
         let query = str.slice(end);
-        document.getElementById('btnProba').addEventListener("click", (e) =>{
+        document.getElementById('btnProba').addEventListener("click", (e) => {
             e.preventDefault();
-            window.location.replace(base+ '/stroop_2'+query);
+            window.location.replace(base + '/stroop_2' + query);
         })
     </script>
 </body>
+
 </html>
