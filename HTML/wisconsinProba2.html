@@ -25,12 +25,12 @@
             background-color: rgba(255, 255, 255, 0.8);
             border: 0px solid rgba(255, 255, 255, 0.479);
             padding: 0px;
-            font-size: 30px;
+           
             text-align: center;
         }
 
         .container {
-            margin: 25px;
+            margin: 15px;
             margin-right: 15%;
         }
 
@@ -79,9 +79,11 @@
 <body>
     <a href="home">home</a>
     <div class="container" id="cont">
-        <p>Pozostało <span class="name" id="powt"> 1 </span> zmian reguły do zakończenia treningu.</p>
-        <p>Liczba prawidłowych odpowiedzi z rzędu: <span class="name" id="rzad"> 0. </span></p>
-        <p id="czas"></p>
+        <p>To jest <span class="name" id="ser"> 1 </span> seria. Pozostało jeszcze <span class="name" id="powt"> 1
+            </span> serii (zmian reguły) do zakończenia testu.</p>
+        <p>Liczba prawidłowych odpowiedzi z rzędu: <span class="name" id="rzad"> 0 </span> . Liczba błędów: <span
+                class="name" id="blad"> 0 </span>. </p>
+        <p class="name"id="czas"></p>
         <div class="grid-container">
             <div class="grid-item"><img src="greenstar2_test.gif" alt="obr" id="obrazek" height="80%"></div>
         </div>
@@ -92,7 +94,7 @@
             <div class="grid-item" id="bcc" onclick="getId(this)"><img src="yellowcross3_test.gif" height="80%"></div>
             <div class="grid-item" id="cbd" onclick="getId(this)"><img src="bluecircle4_test.gif" height="80%"></div>
         </div>
-     </div>
+    </div>
     <script>
         const gifName = ["GreenTriangle3.gif", "GreenTriangle4.gif", "YellowTriangle2.gif", "YellowTriangle4.gif",
             "BlueTriangle2.gif", "BlueTriangle3.gif", "RedStar3.gif", "RedStar4.gif",
@@ -204,6 +206,10 @@
         const rzad = document.getElementById('rzad');
         let start = Date.now();
         let startOg = Date.now();
+        const czas1 = document.getElementById('czas');
+        setInterval(()=>{
+            czas1.innerText = 'Czas: '+ czas(Date.now()-startOg);
+        }, 100)
         let gifIndex = Math.floor(Math.random() * 24);
         let obrStr = gifName[gifIndex].toLowerCase();
         obrazek.src = obrStr;
@@ -227,22 +233,23 @@
             }
             if (licznikSekwencja == 2) {
                 let czas = Date.now() - startOg;
-                document.getElementById('cont').innerHTML = `<h1>Twoje rezultaty:</h1>
+                document.getElementById('cont').innerHTML =
+                    `<h1>Rezultaty treningu:</h1>
                     <h2>Ilość błędów: ${licznikBlad}</h2>
-                    <h2>Czas w sekundach: ${Math.floor(czas/1000)}</h2>
+                    <h2>Czas w sekundach:  ${Math.floor(czas/1000)}</h2>
                     <div class="form-group">
                     <p>Jeśli dobrze zrozumiałeś reguły, przystąp do właściwego testu.</p>
                     <p>Jeśli masz wątpliwość, możesz powtórzyć trening.</p>
                     <br>
                     <br>
                     <div id="guziki" style='text-align:center'><button class="btn" id="btnTrening">Powtórz Trening</button> <button class="btn" id="btnTest">Rozpocznij Test</button></div>`;
-                    document.getElementById('btnTrening').addEventListener('click', ()=>{
-                        location.reload();
-                    });
-                    document.getElementById('btnTest').addEventListener('click', ()=>{
-                        gotowe();
-                    })
-                }
+                document.getElementById('btnTrening').addEventListener('click', () => {
+                    location.reload();
+                });
+                document.getElementById('btnTest').addEventListener('click', () => {
+                    gotowe();
+                })
+            }
         }
         const getId = (karta) => {
             if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
@@ -258,28 +265,27 @@
                 komunikat.style = "color: rgb(15, 238, 23); text-align: center;"
                 komunikat.innerText = "Dobrze";
             } else {
-                rzad.innerHTML = licznikTrafiony;
                 if (licznikBladSerii > 20) {
                     koniec();
                 } else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
                     licznikBladPers++;
-
-                    console.log('błąd pereseverancji: ' + licznikBladPers);
                 } else {
                     trafiony = false;
                     if (licznikTrafiony > 5 || bladZach) {
                         licznikBladZach++;
                         bladZach = true;
-                        console.log('bląd zachowania reguły: ' + licznikBladZach);
                     }
                 }
                 licznikTrafiony = 0;
+                rzad.innerHTML = licznikTrafiony;
+                document.getElementById('blad').innerText = licznikBlad+1;
                 licznikBlad++;
                 licznikBladSerii++;
-                console.log(licznikBladSerii);
+                document.getElementById('blad').innerText = licznikBladSerii;
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
                 komunikat.innerText = "Błąd";
                 powt.innerHTML = 1 - licznikSekwencja;
+                document.getElementById('ser').innerText = licznikSekwencja+1;
             }
             gifIndex = Math.floor(Math.random() * 24);
             obrazek.src = gifName[gifIndex].toLowerCase();

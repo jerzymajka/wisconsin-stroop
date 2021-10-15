@@ -68,12 +68,17 @@
         <p>Aby rozpocząć kliknij <span style="font-size:125%; color: rgb(85, 106, 226);">Start</span>.</p>
         <p>Gdy zakończysz, kliknij przycisk <span style="font-size:125%; color: rgb(85, 106, 226);">Gotowe</span> na dole strony. </p></div>
         <div id="word" style="background-color:darkgray"></div>
+        <br>
+        <p id="rez"></p>
     </div>  
     <div id="word2" style="background-color:darkgray"></div>
     <div id="result"></div>
     <div id="guziki" style='text-align:center'><button class="btn" id="btnStart">Start</button> <button class="btn" id="btnGotowe">Gotowe</button></div>
+
     <div id="alert"></div>
   <script>
+    let reg1 = /\.|,|-|\?/ig;
+    let reg2 = /\s+/ig;
     let licznikBlad = 0;
     let czasStart = 0;
     const str = window.location.href;
@@ -114,21 +119,19 @@
         html += mojHtml(i);
       }
       word.innerHTML=html; 
-      //recognition.start();
-      //html='';
     }
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
     var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
     var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-    var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + koloryPel.join(' | ') + ' ;'
+    var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + koloryPel.join(' | ') + ' ;';
     var recognition = new SpeechRecognition();
     var speechRecognitionList = new SpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);
     recognition.grammars = speechRecognitionList;
+     recognition.lang = 'pl';
     recognition.continuous = true;
-    recognition.lang = 'pl';
     recognition.interimResults = true;
-    recognition.maxAlternatives = 1;
+    let interimResult = '';
     const mojHtml = function(i){
         return `<h1 style="color: rgb(255, 255, 255); text-align:center;" font size="+5">
           <span style="color:${colors[colorArr[i][0]]}">${words[wordArr[i][0]]}</span> <span style="color:${resultColor[i][0]}">${resultArr[i][0]}</span>
@@ -154,23 +157,43 @@
   btnStart.addEventListener('click', ()=>{
     czasStart = Date.now();
     recognition.start();
-  })
-  recognition.onresult = function(event) {
-      moj_color =  event.results[0][0].transcript;
-    }
+  });
+  recognition.onresult = function (event) {
+    //console.log('intRes: '+interimResult);
+    //console.log('mojColor: '+moj_color);
+            rez.innerText= moj_color + ' ' +interimResult.toLocaleLowerCase();
+            interimResult = '';
+             for (var i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    let currentWord = event.results[i][0].transcript;
+                    currentWord = currentWord.replaceAll(reg1, ' ').toLowerCase();
+                    moj_color += currentWord;
+                } else {
+                    isFinished = false;
+                    interimResult += event.results[i][0].transcript + '\u200B';
+                }
+            }
+        };
+
+        recognition.onend = function() {
+            console.log('koniec')
+        };
   btnGotowe.addEventListener('click', ()=>{
     let czas = Date.now()-czasStart;
     recognition.stop();      
     wyniki.innerHTML = htmlWyniki;
     guziki.innerHTML = htmlGuziki;
     setTimeout(()=>{
-    const rezultatArr = moj_color.split(' ');
+    //let my_new_color = moj_color.replaceAll(reg1, ' ').toLowerCase();
+    //console.log(my_new_color);
+    const rezultatArr = moj_color.split(reg2);
     let len = rezultatArr.length;
     let n = 0;
     for(let i = 0; i<2; i++){
       for(let j = 0; j<5; j++){
         if(n<len){
           resultArr[i][j]='(' + rezultatArr[n]+ ')';
+          console.log('rezultat nr:'+n+' = '+ rezultatArr[n])
           resultColor[i][j]='black';
           if(!rezultatArr[n].includes(kolorySkr[colorArr[i][j]])){
             resultArr[i][j]='(' + rezultatArr[n]+ ')';
@@ -193,7 +216,7 @@
       document.getElementById('word2').innerHTML=html;
       document.getElementById('result').innerHTML = `<h3>Podsumowanie:</h3>
                                     <p>Ilość błędów: ${licznikBlad}</p>
-                                    <p>Czas w sekundach: ${Math.floor(czas/1000)}</p>`;
+                                    <p>Czas w sekundach: ${Math.floor(czas/1000)-1}</p>`;
                             
       const btnKoniec = document.getElementById('btnKoniec');
       const btnPowtorz = document.getElementById('btnPowtorz');
@@ -203,20 +226,8 @@
       btnPowtorz.addEventListener('click', ()=>{
         location.reload();
       });
-    }, 300)
+    }, 1000)
   })  
-  //recognition.addEventListener('end', () => recognition.start())
-      /*recognition.onspeechend = function() {
-        //recognition.stop();
-        console.log('koniec mowy');
-      }
-      
-      recognition.onnomatch = function(event) {
-        console.log("Kolor z poza listy");
-      }
-      recognition.onerror = function(event) {
-        console.log('Błąd rozpoznawania mowy ' + event.error);
-      }*/
 
 </script>
 </body>

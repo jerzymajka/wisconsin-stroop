@@ -59,7 +59,7 @@ button:hover {
                 <input class="in" type="password" name="pwd" id="pwd" placeholder="Password" required>
             </div>
             <div class="form-group">
-                <input type="checkbox" class = "check">Wyrażam zgodę na wzięcie udziłu w badaniu</input>
+                <input type="checkbox" class = "check">Wyrażam zgodę na wzięcie udziału w badaniu</input>
             </div>
             <div class="form-group">
                 <button class="btn" type="submit" id="btn">Signup</button>
@@ -80,14 +80,14 @@ button:hover {
                     email: document.getElementById('email').value,
                     pwd: document.getElementById('pwd').value,
                 }
-                if(formData.email.length < 6){
-                    alert[0].innerHTML = "<p>Przykro mi, ale nazwa użytkownika musi zawierć przynajmniej 6.</p>"
+                if(formData.email.length < 5){
+                    alert[0].innerHTML = "<p>Nazwa użytkownika jest zbyt krótka - musi zawierć przynajmniej 5 znaków.</p>"
                 }    
                 else if(formData.pwd.length < 4){
-                    alert[0].innerHTML = "<p>Przykro mi, ale hasło musi zawierć przynajmniej 4 znaki.</p>"
+                    alert[0].innerHTML = "<p>Hasło jest zbyt krótkie - musi zawierć przynajmniej 4 znaki.</p>"
                 }
                 else if(!check[0].checked){
-                    alert[0].innerHTML = "<p>Przykro mi, ale musisz zaznaczyć: 'Wyrażam zgodę na wzięcie udziłu w badaniu'.</p>"
+                    alert[0].innerHTML = "<p>Zaznacz opcję: 'Wyrażam zgodę na wzięcie udziłu w badaniu'.</p>"
                 }
                 else{
                     const body = formData;

@@ -4,14 +4,17 @@ import fs from 'fs'
 import path from 'path';
 import handlers from './lib/handlers.mjs';
 import helpers from './lib/helpers.mjs';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
+import {fileURLToPath} from 'url';
+const __filename = fileURLToPath(
+    import.meta.url);
 const __dirname = path.dirname(__filename);
-import { StringDecoder } from 'string_decoder';
+import {
+    StringDecoder
+} from 'string_decoder';
 
 const router = {
-    '':handlers.home,
-    'ankieta':handlers.ankieta,
+    '': handlers.home,
+    'ankieta': handlers.ankieta,
     'testy': handlers.testy,
     'login': handlers.login,
     'signup': handlers.signup,
@@ -22,18 +25,20 @@ const router = {
     'stroop_2': handlers.stroop_2,
     'stroop_3': handlers.stroop_3,
     'stroop_4': handlers.stroop_4,
-    'results' : handlers.results,
-    'home' : handlers.home
+    'results': handlers.results,
+    'admin': handlers.admin,
+    'admin_2': handlers.admin_2,
+    'home': handlers.home
 }
 //common part for http and https server
-const unifiedServer = function(req, res, urlParsed){
+const unifiedServer = function (req, res, urlParsed) {
     //const urlParsed = url.parse(req.url, true);
     const decoder = new StringDecoder("utf-8");
     let buffer = "";
-    req.on('data',function(data){
+    req.on('data', function (data) {
         buffer += decoder.write(data);
     })
-    req.on("end", function(){
+    req.on("end", function () {
         buffer += decoder.end();
         const data = {
             'urlParsed': urlParsed,
@@ -41,32 +46,32 @@ const unifiedServer = function(req, res, urlParsed){
             'method': req.method.toLowerCase(),
             'queryStr': urlParsed.query,
             'headers': req.headers,
-            'decoder':  decoder,
+            'decoder': decoder,
             'payload': helpers.parseJson(buffer)
         }
-         //choose the handler
+        //choose the handler
         let trimmedPath = data.path.replace("/", "");
-        let chooseHandler = typeof(router[trimmedPath]) != 'undefined' ? router[trimmedPath] : handlers.notFound;
+        let chooseHandler = typeof (router[trimmedPath]) != 'undefined' ? router[trimmedPath] : handlers.notFound;
         //default handler
         chooseHandler(data, res);
-    })  
+    })
 }
-const server = http.createServer(function(req, res){
+const server = http.createServer(function (req, res) {
     const urlParsed = url.parse(req.url, true);
     const reqUrl = urlParsed.pathname;
-    //console.log(req.url);
-    //console.log(req.method)
-    //console.log(reqUrl);
+    /*console.log(req.url);
+    console.log(req.method)
+    console.log(reqUrl);*/
     let extention = reqUrl.split('.')[1];
-    if(extention=='gif'){
-        fs.readFile(path.join(__dirname, './gif', reqUrl), (err, data)=>{
-            if(!err){
+    if (extention == 'gif') {
+        fs.readFile(path.join(__dirname, './gif', reqUrl), (err, data) => {
+            if (!err) {
                 res.writeHead(200, {
                     'Content-Type': 'image/gif'
                 })
                 res.write(data, 'utf8');
                 res.end();
-            }else{
+            } else {
                 res.writeHead(200, {
                     'Content-Type': 'text/plain'
                 })
@@ -74,19 +79,14 @@ const server = http.createServer(function(req, res){
             }
 
         });
-    }
-    else{
+    } else {
         unifiedServer(req, res, urlParsed);
     }
 });
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+    port = 3000;
 }
-server.listen(port, function(){
+server.listen(port, function () {
     console.log('Server start at port 3000')
 })
-
-
-
-

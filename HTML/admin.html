@@ -7,7 +7,7 @@
     <style>
         .container {
             margin: 100px;
-            margin-right: 10%;
+            margin-right: 30%;
         }
 
         .form-group {
@@ -19,7 +19,7 @@
         }
 
         .in {
-            width: 40%;
+            width: 50%;
             border: solid 1px #eee;
             padding: 15px 10px;
         }
@@ -57,7 +57,7 @@
     <a href="home">home</a>
     <div class="container">
         <h1>Badanie Funkcji Hamowania testem Stroop'a i Sortowania Kart z Wisconsin</h1>
-        <h3>Zaloguj się, podając Twoje hasło i nazwę użytkownika, jakich użyłeś przy rejestracji.</h3>
+        <h3>Strona administratora</h3>
         <form role="form">
             <div class="form-group">
                 <input class="in" type="email" name="email" id="email" placeholder="E-mail" required>
@@ -84,7 +84,7 @@
                 email: document.getElementById('email').value,
                 pwd: document.getElementById('pwd').value,
             }
-            if (formData.email.length < 5) {
+            if (formData.email.length < 6) {
                 alert[0].innerHTML = "<p>Sorry, but your email seems to be incorrect.</p>"
             } else if (formData.pwd.length < 4) {
                 alert[0].innerHTML = "<p>Sorry, but password has to have more then 3 characters.</p>"
@@ -115,7 +115,7 @@
                     .then(res => {
                         localStorage.setItem('badanie_funkcji_hamowania', JSON.stringify(res));
                         window.location.replace(base_url +
-                            `ankieta?hs=${res.hash}&ep=${res.exp}&id=${res.id}`)
+                            `admin_2?hs=${res.hash}&ep=${res.exp}&id=${res.id}`)
                     }).catch(err => console.log(err));
             }
         })
