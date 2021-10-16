@@ -9,29 +9,27 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: auto;
-            background-color: #ebf0f3;
+            grid-template-columns: auto auto auto;
             padding: 0px;
         }
 
         .grid-container1 {
             display: grid;
+            margin-right: 8%;
+            margin-left: 8%;
             grid-template-columns: auto auto auto auto;
-            background-color: #ebf0f3;
             padding: 0px;
         }
 
         .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 0px solid rgba(255, 255, 255, 0.479);
             padding: 0px;
-
             text-align: center;
         }
 
         .container {
             margin: 15px;
             margin-right: 15%;
+            margin-left: 8%;
         }
 
         .form-group {
@@ -79,13 +77,17 @@
 <body>
     <a href="home">home</a>
     <div class="container" id="cont">
-        <p>To jest <span class="name" id="ser"> 1 </span> seria. Pozostało jeszcze <span class="name" id="powt"> 1
-            </span> serii (zmian reguły) do zakończenia testu.</p>
-        <p>Liczba prawidłowych odpowiedzi z rzędu: <span class="name" id="rzad"> 0 </span> . Liczba błędów: <span
-                class="name" id="blad"> 0 </span>. </p>
-        <p class="name" id="czas"></p>
         <div class="grid-container">
+            <div>
+                <img src="blanck.gif">
+                <p>Seria: <span class="name" id="ser"> 1</span>.</p>
+                <p>Pozostało: <span class="name" id="powt"> 1</span>. </p>
+                <p>Prawidłowe odpowiedzi z rzędu: <span class="name" id="rzad"> 0</span>.</p>
+                <p>Błędy w tej serii:  <span class="name" id="blad"> 0</span>.</p>
+                <p>Czas: <span class="name" id="czas"> 0</span>.</p>
+            </div>
             <div class="grid-item"><img src="greenstar2_test.gif" alt="obr" id="obrazek" height="80%"></div>
+            <div class="grid-item"><img src="blanck.gif"></div>
         </div>
         <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat">Dobrze</h1>
         <div class="grid-container1">
@@ -208,7 +210,7 @@
         let startOg = Date.now();
         const czas1 = document.getElementById('czas');
         setInterval(() => {
-            czas1.innerText = 'Czas: ' + czas(Date.now() - startOg);
+            czas1.innerText =  czas(Date.now() - startOg);
         }, 100)
         let gifIndex = Math.floor(Math.random() * 24);
         let obrStr = gifName[gifIndex].toLowerCase();
