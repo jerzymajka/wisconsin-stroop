@@ -98,19 +98,21 @@
         </div>
     </div>
     <script>
-        const gifName = ["GreenTriangle3.gif", "GreenTriangle4.gif", "YellowTriangle2.gif", "YellowTriangle4.gif",
-            "BlueTriangle2.gif", "BlueTriangle3.gif", "RedStar3.gif", "RedStar4.gif",
-            "YellowStar1.gif", "YellowStar4.gif", "BlueStar1.gif", "BlueStar3.gif", "RedCross2.gif",
-            "RedCross4.gif",
-            "GreenCross1.gif", "GreenCross4.gif", "BlueCross1.gif", "BlueCross2.gif",
-            "RedCircle2.gif", "RedCircle3.gif", "GreenCircle1.gif", "GreenCircle3.gif", "YellowCircle1.gif",
-            "YellowCircle2.gif"
+        const gifName = [
+            "GreenTriangle3.gif", "RedStar4.gif", "YellowCircle1.gif","BlueTriangle2.gif", 
+            "YellowCircle2.gif", "BlueTriangle3.gif", "GreenTriangle4.gif","RedStar3.gif", 
+            "GreenCross4.gif", "YellowStar1.gif", "GreenCircle3.gif","BlueStar1.gif", 
+            "RedCross2.gif",   "BlueStar3.gif","GreenCross1.gif","YellowStar4.gif",
+            "BlueCross1.gif", "RedCircle2.gif", "RedCross4.gif", "YellowTriangle2.gif",
+            "GreenCircle1.gif", "YellowTriangle4.gif", "BlueCross2.gif", "RedCircle3.gif"
         ];
-        const gifSymbol = ['aac', 'aad', 'bab', 'bad',
-            'cab', 'cac', 'ddc', 'ddd',
-            'bda', 'bdd', 'cda', 'cdc', 'dcb', 'dcd',
-            'aca', 'acd', 'cca', 'ccb',
-            'dbb', 'dbc', 'aba', 'abc', 'bba', 'bbb'
+        const gifSymbol = [
+            'aac', 'ddd', 'bba', 'cab', 
+            'bbb', 'cac', 'aad', 'ddc',
+            'acd', 'bda', 'abc', 'cda', 
+            'dcb', 'cdc', 'aca',  'bdd',
+            'cca', 'dbb', 'dcd', 'bab',
+            'aba', 'bad', 'ccb', 'dbc'
         ];
         const regula = {
             color: 0,
@@ -190,6 +192,14 @@
         let staraRegula = aktualnyRegula;
         let trafiony = false;
         let bladZach = false;
+        let index1= 0;
+        const zwiekszIndex = ()=>{
+            if(index1>23){
+                index1=0;
+            }
+            index1++;
+            return index1-1;
+        }
         const zgodnoscReguly = (regula, index, karta) => {
             return (gifSymbol[index][regula] == karta[regula]) ? true : false;
         }
@@ -211,8 +221,8 @@
         const czas1 = document.getElementById('czas');
         setInterval(() => {
             czas1.innerText =  czas(Date.now() - startOg);
-        }, 100)
-        let gifIndex = Math.floor(Math.random() * 24);
+        }, 100);
+        let gifIndex = zwiekszIndex();
         let obrStr = gifName[gifIndex].toLowerCase();
         obrazek.src = obrStr;
         const koniec = function () {
@@ -292,10 +302,9 @@
                 powt.innerHTML = 5 - licznikSekwencja;
                 document.getElementById('ser').innerText = licznikSekwencja + 1;
             }
-            gifIndex = Math.floor(Math.random() * 24);
+            gifIndex = zwiekszIndex();
             obrazek.src = gifName[gifIndex].toLowerCase();
         }
     </script>
 </body>
-
 </html>
