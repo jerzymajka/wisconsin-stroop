@@ -182,6 +182,7 @@
             ['ksztalt', 7],
             ['liczba', 7]
         ];
+        let licznikTotal = 0;
         let licznikTrafiony = 0;
         let licznikSekwencja = 0;
         let licznikBlad = 0;
@@ -209,7 +210,6 @@
             let dsec = Math.floor((time - sec * 1000) / 100);
             return `${sec}.${dsec}`;
         }
-
         const href = window.location.href;
         const gotowe = function () {
             window.location.replace(href.replace('wisconsint', 'testy'));
@@ -229,7 +229,7 @@
         obrazek.src = obrStr;
         const koniec = function () {
             rezultaty[licznikSekwencja].regula = sekwencja[aktualnyRegula][0];
-            rezultaty[licznikSekwencja].liczbaPowt = sekwencja[aktualnyRegula][1] + 1;
+            rezultaty[licznikSekwencja].total = licznikTotal;
             rezultaty[licznikSekwencja].bledyOgulem = licznikBladSerii;
             rezultaty[licznikSekwencja].bledyPers = licznikBladPers == 0 ? 0 : licznikBladPers - 1;
             rezultaty[licznikSekwencja].bledyZachRegul = licznikBladZach;
@@ -272,6 +272,7 @@
         }
         const getId = (karta) => {
             if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
+                licznikTotal++;
                 licznikTrafiony++;
                 trafiony = false;
                 bladZach = false;
