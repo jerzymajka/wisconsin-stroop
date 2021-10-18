@@ -175,12 +175,12 @@
             }
         ]
         const sekwencja = [
-            ['color', 3],
+            ['color', 4],
             ['ksztalt', 4],
-            ['color', 3],
-            ['liczba', 5],
+            ['color', 4],
+            ['liczba', 4],
             ['ksztalt', 4],
-            ['liczba', 5]
+            ['liczba', 4]
         ];
         let licznikTrafiony = 0;
         let licznikSekwencja = 0;
@@ -193,6 +193,7 @@
         let trafiony = false;
         let bladZach = false;
         let index1= 0;
+        let komunikatText = 'Dobrze';
         const zwiekszIndex = ()=>{
             if(index1>23){
                 index1=0;
@@ -237,10 +238,12 @@
             licznikBladSerii = 0;
             licznikBladPers = 0;
             licznikBladZach = 0;
+            licznikTrafiony = 0;
             licznikSekwencja++;
             staraRegula = aktualnyRegula;
             trafiony = true;
             aktualnyRegula++;
+            //console.log('aktReg: '+aktualnyRegula+' staraReg: '+staraRegula)
             if (aktualnyRegula == 6) {
                 aktualnyRegula = 0;
             }
@@ -265,38 +268,45 @@
             }
         }
         const getId = (karta) => {
+            //console.log('kartaId:'+karta.id + ' - gifIndex: '+gifSymbol[gifIndex] )
             if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
                 licznikTrafiony++;
                 trafiony = false;
                 bladZach = false;
                 rzad.innerHTML = licznikTrafiony;
+                document.getElementById('blad').innerText = licznikBladSerii;
                 if (licznikTrafiony > sekwencja[aktualnyRegula][1]) {
                     rezultaty[licznikSekwencja].ukonczono = true;
                     trafiony = true;
+                    komunikatText = '5 prawidłowych odpowiedzi z rzędu - ZMIANA REGUŁY';
                     koniec();
                 }
                 komunikat.style = "color: rgb(15, 238, 23); text-align: center;"
-                komunikat.innerText = "Dobrze";
+                komunikat.innerText = komunikatText;
+                komunikatText = 'Dobrze';
             } else {
-                if (licznikBladSerii > 20) {
+                komunikatText = 'Błąd';
+                licznikBladSerii++;
+                document.getElementById('blad').innerText = licznikBladSerii;
+                if (licznikBladSerii > 9) {
+                    document.getElementById('blad').innerText = licznikBladSerii;
+                    komunikatText = '10 błędów w serii: ZMIANA REGUŁY.';
                     koniec();
-                } else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
+                }else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
                     licznikBladPers++;
                 } else {
                     trafiony = false;
-                    if (licznikTrafiony > 5 || bladZach) {
+                    if (licznikTrafiony > 3 || bladZach) {
                         licznikBladZach++;
                         bladZach = true;
                     }
                 }
                 licznikTrafiony = 0;
                 rzad.innerHTML = licznikTrafiony;
-                document.getElementById('blad').innerText = licznikBlad + 1;
                 licznikBlad++;
-                licznikBladSerii++;
-                document.getElementById('blad').innerText = licznikBladSerii;
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
-                komunikat.innerText = "Błąd";
+                komunikat.innerText = komunikatText;
+                komunikatText = 'Dobrze';
                 powt.innerHTML = 1 - licznikSekwencja;
                 document.getElementById('ser').innerText = licznikSekwencja + 1;
             }

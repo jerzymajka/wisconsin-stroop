@@ -110,7 +110,7 @@
             'aac', 'ddd', 'bba', 'cab', 
             'bbb', 'cac', 'aad', 'ddc',
             'acd', 'bda', 'abc', 'cda', 
-            'dcb', 'cdc', 'aca',  'bdd',
+            'dcb', 'cdc', 'aca', 'bdd',
             'cca', 'dbb', 'dcd', 'bab',
             'aba', 'bad', 'ccb', 'dbc'
         ];
@@ -175,12 +175,12 @@
             }
         ]
         const sekwencja = [
-            ['color', 8],
-            ['ksztalt', 9],
-            ['color', 8],
-            ['liczba', 10],
-            ['ksztalt', 9],
-            ['liczba', 10]
+            ['color', 7],
+            ['ksztalt', 7],
+            ['color', 7],
+            ['liczba', 7],
+            ['ksztalt', 7],
+            ['liczba', 7]
         ];
         let licznikTrafiony = 0;
         let licznikSekwencja = 0;
@@ -193,6 +193,7 @@
         let trafiony = false;
         let bladZach = false;
         let index1= 0;
+        let komunikatText = 'Dobrze';
         const zwiekszIndex = ()=>{
             if(index1>23){
                 index1=0;
@@ -208,9 +209,10 @@
             let dsec = Math.floor((time - sec * 1000) / 100);
             return `${sec}.${dsec}`;
         }
+
         const href = window.location.href;
         const gotowe = function () {
-            window.location.replace(href.replace('wisconsint', 'testy'));
+            window.location.replace(href.replace('wisconsinp2', 'wisconsint'));
         }
         const obrazek = document.getElementById("obrazek");
         const komunikat = document.getElementById("komunikat");
@@ -221,7 +223,7 @@
         const czas1 = document.getElementById('czas');
         setInterval(() => {
             czas1.innerText =  czas(Date.now() - startOg);
-        }, 100);
+        }, 100)
         let gifIndex = zwiekszIndex();
         let obrStr = gifName[gifIndex].toLowerCase();
         obrazek.src = obrStr;
@@ -236,6 +238,7 @@
             licznikBladSerii = 0;
             licznikBladPers = 0;
             licznikBladZach = 0;
+            licznikTrafiony = 0;
             licznikSekwencja++;
             staraRegula = aktualnyRegula;
             trafiony = true;
@@ -273,21 +276,29 @@
                 trafiony = false;
                 bladZach = false;
                 rzad.innerHTML = licznikTrafiony;
+                document.getElementById('blad').innerText = licznikBladSerii;
                 if (licznikTrafiony > sekwencja[aktualnyRegula][1]) {
                     rezultaty[licznikSekwencja].ukonczono = true;
                     trafiony = true;
+                    komunikatText = '8 prawidłowych odpowiedzi z rzędu - ZMIANA REGUŁY';
                     koniec();
                 }
                 komunikat.style = "color: rgb(15, 238, 23); text-align: center;"
-                komunikat.innerText = "Dobrze";
+                komunikat.innerText = komunikatText;
+                komunikatText = 'Dobrze';
             } else {
-                if (licznikBladSerii > 20) {
+                komunikatText = 'Błąd';
+                licznikBladSerii++;
+                document.getElementById('blad').innerText = licznikBladSerii;
+                if (licznikBladSerii > 15) {
+                    document.getElementById('blad').innerText = licznikBladSerii;
+                    komunikatText = '16 błędów w serii: ZMIANA REGUŁY.';
                     koniec();
-                } else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
+                }else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
                     licznikBladPers++;
                 } else {
                     trafiony = false;
-                    if (licznikTrafiony > 5 || bladZach) {
+                    if (licznikTrafiony > 3 || bladZach) {
                         licznikBladZach++;
                         bladZach = true;
                     }
@@ -295,10 +306,9 @@
                 licznikTrafiony = 0;
                 rzad.innerHTML = licznikTrafiony;
                 licznikBlad++;
-                licznikBladSerii++;
-                document.getElementById('blad').innerText = licznikBladSerii;
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
-                komunikat.innerText = "Błąd";
+                komunikat.innerText = komunikatText;
+                komunikatText = 'Dobrze';
                 powt.innerHTML = 5 - licznikSekwencja;
                 document.getElementById('ser').innerText = licznikSekwencja + 1;
             }
@@ -307,4 +317,5 @@
         }
     </script>
 </body>
+
 </html>
