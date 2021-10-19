@@ -121,7 +121,7 @@
         };
         const rezultaty = [{
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -130,7 +130,7 @@
             },
             {
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -139,7 +139,7 @@
             },
             {
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -148,7 +148,7 @@
             },
             {
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -157,7 +157,7 @@
             },
             {
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -166,7 +166,7 @@
             },
             {
                 regula: 'color',
-                liczbaPowt: 0,
+                total: 0,
                 ukonczono: false,
                 czas: 0,
                 bledyOgulem: 0,
@@ -239,6 +239,7 @@
             licznikBladPers = 0;
             licznikBladZach = 0;
             licznikTrafiony = 0;
+            licznikTotal = 0;
             licznikSekwencja++;
             staraRegula = aktualnyRegula;
             trafiony = true;
@@ -271,8 +272,9 @@
             }
         }
         const getId = (karta) => {
+            console.log('karta: '+karta.id+' Regula: '+gifSymbol[gifIndex]);
+            licznikTotal++;
             if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
-                licznikTotal++;
                 licznikTrafiony++;
                 trafiony = false;
                 bladZach = false;
