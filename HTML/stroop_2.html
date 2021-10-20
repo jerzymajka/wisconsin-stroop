@@ -157,7 +157,7 @@
     recognition.grammars = speechRecognitionList;
     recognition.lang = 'pl';
     recognition.continuous = true;
-    recognition.interimResults = true;
+    recognition.interimResults = false;
     let interimResult = '';
     const mojHtml = function (i) {
       return `<h1 style="color: rgb(255, 255, 255); text-align:center;" font size="+5">
@@ -213,7 +213,7 @@
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           let currentWord = event.results[i][0].transcript;
-          console.log(currentWord);
+          console.log('aktualne slowo: '+currentWord);
           currentWord = currentWord.replaceAll(reg1, ' ').toLowerCase();
           moj_color += currentWord+' ';
         } else {
