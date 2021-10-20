@@ -208,14 +208,15 @@
     recognition.onresult = function (event) {
       console.log('rezInterim: '+interimResult.toLowerCase())
       rez.innerText = moj_color + ' ' + interimResult.toLowerCase();
-      console.log('mojeKolory: '+moj_color)
       interimResult = '';
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           let currentWord = event.results[i][0].transcript;
           console.log('aktualne slowo: '+currentWord);
           currentWord = currentWord.replaceAll(reg1, ' ').toLowerCase();
+          console.log('aktualne slowo 2: '+currentWord);
           moj_color += currentWord+' ';
+          console.log('mojeKolory: '+moj_color);
         } else {
           isFinished = false;
           interimResult += event.results[i][0].transcript + '\u200B';
