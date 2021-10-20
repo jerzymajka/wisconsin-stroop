@@ -207,7 +207,7 @@
     });
     recognition.onresult = function (event) {
       console.log('rezInterim: '+interimResult.toLowerCase())
-      rez.innerText = moj_color + ' ' + interimResult.toLowerCase();
+      //rez.innerText = moj_color + ' ' + interimResult.toLowerCase();
       interimResult = '';
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
@@ -236,6 +236,7 @@
       wyniki.innerHTML = htmlWyniki;
       guziki.innerHTML = htmlGuziki;
       setTimeout(() => {
+        console.log('kolor2: '+moj_color)
         moj_color = moj_color.trim();
         const rezultatArr = moj_color.split(reg2);
         let len = rezultatArr.length;
@@ -281,7 +282,7 @@
         btnPowtorz.addEventListener('click', () => {
           location.reload();
         });
-      }, 1000)
+      }, 2000)
     })
   </script>
 </body>
