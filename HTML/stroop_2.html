@@ -224,6 +224,7 @@
     };
 
     recognition.onend = function () {
+      recognition.start();
       console.log('koniec')
     };
     btnGotowe.addEventListener('click', () => {
@@ -234,6 +235,7 @@
       wyniki.innerHTML = htmlWyniki;
       guziki.innerHTML = htmlGuziki;
       setTimeout(() => {
+        moj_color = moj_color.trim();
         const rezultatArr = moj_color.split(reg2);
         let len = rezultatArr.length;
         let n = 0;
