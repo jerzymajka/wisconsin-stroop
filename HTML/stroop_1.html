@@ -7,10 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Stroop'a</title>
     <style>
-        .container {
-            margin-top: 15pt;
-            margin-left: 15%;
-            margin-right: 15%;
+        @media(max-width: 640px) {
+            img {
+                width: 100%;
+            }
+
+            h1 {
+                color: rgb(42, 20, 238);
+                font-size: 120%;
+            }
+
+            h2 {
+                color: rgb(10, 22, 131);
+                font-size: 110%;
+            }
+
+            h3 {
+                color: rgb(16, 20, 80);
+                font-size: 100%;
+            }
+
+            .container {
+                margin-top: 5pt;
+            }
+        }
+
+        @media(min-width: 640px) {
+            .container {
+                margin-top: 15pt;
+                margin-left: 15%;
+                margin-right: 15%;
+            }
         }
 
         .btn {
@@ -57,9 +84,7 @@
                 <span style="color:blue">zielony </span></h1>
         </div>
         <p>Szczegółowe instrukcje są przedstawione na kolejnej planszy. </p>
-        <br>
         <p>Przed rozpoczęciem właściwego testu możesz skorzystać z krótkiego (10 słów) test treningowego.</p>
-        <br>
         <br>
         <form role="form">
             <div class="form-group">

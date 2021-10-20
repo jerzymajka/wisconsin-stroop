@@ -7,96 +7,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test sortowania kart z Wisconsin</title>
     <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            padding: 0px;
+        @media(max-width: 640px) {
+          img {
+            width: 100%;
+          }
+    
+          h1 {
+            color: rgb(42, 20, 238);
+            font-size: 120%;
+          }
+    
+          h2 {
+            color: rgb(10, 22, 131);
+            font-size: 110%;
+          }
+    
+          h3 {
+            color: rgb(16, 20, 80);
+            font-size: 100%;
+          }
+    
+          .container {
+            margin: 0px;
+    
+          }
         }
-
-        .grid-container1 {
-            display: grid;
-            margin-right: 8%;
-            margin-left: 8%;
-            grid-template-columns: auto auto auto auto;
-            padding: 0px;
+    
+        @media(min-width: 640px) {
+            .container {
+                margin: 15px;
+                margin-right: 15%;
+                margin-left: 8%;
+            }
         }
-
-        .grid-item {
-            padding: 0px;
-            text-align: center;
-        }
-
-        .container {
-            margin: 15px;
-            margin-right: 15%;
-            margin-left: 8%;
-        }
-
-        .form-group {
-            margin: 10px;
-        }
-
-        .alert {
-            color: red;
-        }
-
-        .in {
-            width: 50%;
-            border: solid 1px #eee;
-            padding: 15px 10px;
-        }
-
-        .btn {
-            width: 200px;
-            padding: 15px;
-            margin: 25px;
-            background: #fff;
-            color: dodgerblue;
-            border: solid 1px dodgerblue;
-            cursor: pointer;
-            transition: all 0.38s ease-in-out;
-        }
-
-        .name {
-            font-size: 1.3em;
-            color: rgb(214, 58, 19);
-            font-weight: bold;
-        }
-
-        .name:hover {
-            background: dodgerblue;
-        }
-
-        button:hover {
-            background: dodgerblue;
-            color: #fff;
-        }
-    </style>
-</head>
-
-<body>
-    <a href="home">home</a>
-    <div class="container" id="cont">
-        <div class="grid-container">
-            <div>
-                <img src="blanck.gif">
-                <p>Seria: <span class="name" id="ser"> 1</span>.</p>
-                <p>Pozostało: <span class="name" id="powt"> 5</span>. </p>
-                <p>Prawidłowe odpowiedzi z rzędu: <span class="name" id="rzad"> 0</span>.</p>
-                <p>Błędy w tej serii:  <span class="name" id="blad"> 0</span>.</p>
-                <p>Czas: <span class="name" id="czas"> 0</span>.</p>
+    
+            .form-group {
+                margin: 10px;
+            }
+    
+            .alert {
+                color: red;
+            }
+    
+            .in {
+                width: 50%;
+                border: solid 1px #eee;
+                padding: 15px 10px;
+            }
+    
+            .btn {
+                width: 200px;
+                padding: 15px;
+                margin: 25px;
+                background: #fff;
+                color: dodgerblue;
+                border: solid 1px dodgerblue;
+                cursor: pointer;
+                transition: all 0.38s ease-in-out;
+            }
+    
+            .name {
+                font-size: 1.3em;
+                color: rgb(214, 58, 19);
+                font-weight: bold;
+            }
+    
+            .name:hover {
+                background: dodgerblue;
+            }
+    
+            button:hover {
+                background: dodgerblue;
+                color: #fff;
+            }
+            .container2 {
+                display: flex;
+            }
+            .box1 {
+                flex: 1;
+                text-align: center;
+            }
+    
+            .box2 {
+                flex: 1;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <a href="home">home</a>
+        <div class="container" id="cont">
+            <div class="container2">
+                <div class="box2">
+                    <p>Seria: <span class="name" id="ser"> 1</span>.</p>
+                    <p>Pozostało: <span class="name" id="powt"> 5</span>. </p>
+                    <p>Dobrze: <span class="name" id="rzad"> 0</span>.</p>
+                    <p>Błędy: <span class="name" id="blad"> 0</span>.</p>
+                    <p>Czas: <span class="name" id="czas"> 0</span>.</p>
+                </div>
+                <div class="box1">
+                    <img src="bluecross2.gif" id="obrazek">
+                </div>
+                <div class="box1">
+                    <img src="blanck.gif" >
+                </div>
             </div>
-            <div class="grid-item"><img src="greenstar2_test.gif" alt="obr" id="obrazek" height="80%"></div>
-            <div class="grid-item"><img src="blanck.gif"></div>
-        </div>    
-        <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat">Dobrze</h1>
-        <div class="grid-container1">
-            <div class="grid-item" id="daa" onclick="getId(this)"><img src="redtriangle1_test.gif" height="80%"></div>
-            <div class="grid-item" id="adb" onclick="getId(this)"><img src="greenstar2_test.gif" height="80%"></div>
-            <div class="grid-item" id="bcc" onclick="getId(this)"><img src="yellowcross3_test.gif" height="80%"></div>
-            <div class="grid-item" id="cbd" onclick="getId(this)"><img src="bluecircle4_test.gif" height="80%"></div>
+            <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat">Dobrze</h1>
+            <div class="container2">
+                <div class="box1" id="daa" onclick="getId(this)">
+                    <img src="redtriangle1_test.gif">
+                </div>
+                <div class="box1" id="adb" onclick="getId(this)">
+                    <img src="greenstar2_test.gif">
+                </div>
+                <div class="box1" id="bcc" onclick="getId(this)">
+                    <img src="yellowcross3_test.gif">
+                </div>
+                <div class="box1" id="cbd" onclick="getId(this)">
+                    <img src="bluecircle4_test.gif">
+                </div>
+            </div>
+    
         </div>
-    </div>
     <script>
         const gifName = [
             "GreenTriangle3.gif", "RedStar4.gif", "YellowCircle1.gif","BlueTriangle2.gif", 
@@ -221,9 +253,16 @@
         let start = Date.now();
         let startOg = Date.now();
         const czas1 = document.getElementById('czas');
+        /*let startClock = null;
+        const stopClock = function () {
+            clearInterval(startClock);
+        };
+        startClock = setInterval(() => {
+            czas1.innerText =  czas(Date.now() - startOg);
+        }, 100);*/
         setInterval(() => {
             czas1.innerText =  czas(Date.now() - startOg);
-        }, 100)
+        }, 100);
         let gifIndex = zwiekszIndex();
         let obrStr = gifName[gifIndex].toLowerCase();
         obrazek.src = obrStr;
@@ -248,6 +287,7 @@
                 aktualnyRegula = 0;
             }
             if (licznikSekwencja == 6) {
+                //stopClock()
                 fetch(href, {
                     method: 'post',
                     body: JSON.stringify(rezultaty),
@@ -272,7 +312,7 @@
             }
         }
         const getId = (karta) => {
-            console.log('karta: '+karta.id+' Regula: '+gifSymbol[gifIndex]);
+            //console.log('karta: '+karta.id+' Regula: '+gifSymbol[gifIndex]);
             licznikTotal++;
             if (zgodnoscReguly(regula[sekwencja[aktualnyRegula][0]], gifIndex, karta.id)) {
                 licznikTrafiony++;

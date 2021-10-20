@@ -7,10 +7,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Stroop'a - część pierwsza</title>
   <style>
-    .container {
-      margin-top: 15pt;
-      margin-left: 5%;
-      margin-right: 10%;
+    @media(max-width: 640px) {
+      img {
+        width: 100%;
+      }
+
+      h1 {
+        color: rgb(42, 20, 238);
+        font-size: 120%;
+      }
+
+      h2 {
+        color: rgb(10, 22, 131);
+        font-size: 110%;
+      }
+
+      h3 {
+        color: rgb(16, 20, 80);
+        font-size: 100%;
+      }
+
+      .container {
+        margin-top: 5pt;
+      }
+    }
+
+    @media(min-width: 640px) {
+      .container {
+        margin-top: 15pt;
+        margin-left: 5%;
+        margin-right: 10%;
+      }
     }
 
     .btn {
@@ -40,10 +67,10 @@
     <br>
     <br>
     <h3>Wykonałeś już część pierwszą.</h3>
-    <h3>Możesz teraz przystąpić bezpośrednio do część drugiej.</h3>
+    <h3>Możesz teraz przystąpić bezpośrednio do części drugiej.</h3>
     <br>
     <br>
-    <div id="guziki" style='margin-left: 65%'><button class="btn" id="btnGotowe">Rozpocznij część drugą</button></div>
+    <div id="guziki" style='text-align: center;'><button class="btn" id="btnGotowe">Rozpocznij część drugą</button></div>
   </div>
   <script>
     const str = window.location.href;

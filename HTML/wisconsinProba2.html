@@ -7,30 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test sortowania kart z Wisconsin</title>
     <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            padding: 0px;
-        }
+    @media(max-width: 640px) {
+      img {
+        width: 100%;
+      }
 
-        .grid-container1 {
-            display: grid;
-            margin-right: 8%;
-            margin-left: 8%;
-            grid-template-columns: auto auto auto auto;
-            padding: 0px;
-        }
+      h1 {
+        color: rgb(42, 20, 238);
+        font-size: 120%;
+      }
 
-        .grid-item {
-            padding: 0px;
-            text-align: center;
-        }
+      h2 {
+        color: rgb(10, 22, 131);
+        font-size: 110%;
+      }
 
+      h3 {
+        color: rgb(16, 20, 80);
+        font-size: 100%;
+      }
+
+      .container {
+        margin: 0px;
+
+      }
+    }
+
+    @media(min-width: 640px) {
         .container {
             margin: 15px;
             margin-right: 15%;
             margin-left: 8%;
         }
+    }
 
         .form-group {
             margin: 10px;
@@ -71,46 +80,69 @@
             background: dodgerblue;
             color: #fff;
         }
+        .container2 {
+            display: flex;
+        }
+        .box1 {
+            flex: 1;
+            text-align: center;
+        }
+
+        .box2 {
+            flex: 1;
+        }
     </style>
 </head>
 
 <body>
     <a href="home">home</a>
     <div class="container" id="cont">
-        <div class="grid-container">
-            <div>
-                <img src="blanck.gif">
+        <div class="container2">
+            <div class="box2">
                 <p>Seria: <span class="name" id="ser"> 1</span>.</p>
                 <p>Pozostało: <span class="name" id="powt"> 1</span>. </p>
-                <p>Prawidłowe odpowiedzi z rzędu: <span class="name" id="rzad"> 0</span>.</p>
-                <p>Błędy w tej serii:  <span class="name" id="blad"> 0</span>.</p>
+                <p>Dobrze: <span class="name" id="rzad"> 0</span>.</p>
+                <p>Błędy: <span class="name" id="blad"> 0</span>.</p>
                 <p>Czas: <span class="name" id="czas"> 0</span>.</p>
             </div>
-            <div class="grid-item"><img src="greenstar2_test.gif" alt="obr" id="obrazek" height="80%"></div>
-            <div class="grid-item"><img src="blanck.gif"></div>
+            <div class="box1">
+                <img src="bluecross2.gif" id="obrazek">
+            </div>
+            <div class="box1">
+                <img src="blanck.gif" >
+            </div>
         </div>
         <h1 style="color: rgb(255, 255, 255); text-align: center;" id="komunikat">Dobrze</h1>
-        <div class="grid-container1">
-            <div class="grid-item" id="daa" onclick="getId(this)"><img src="redtriangle1_test.gif" height="80%"></div>
-            <div class="grid-item" id="adb" onclick="getId(this)"><img src="greenstar2_test.gif" height="80%"></div>
-            <div class="grid-item" id="bcc" onclick="getId(this)"><img src="yellowcross3_test.gif" height="80%"></div>
-            <div class="grid-item" id="cbd" onclick="getId(this)"><img src="bluecircle4_test.gif" height="80%"></div>
+        <div class="container2">
+            <div class="box1" id="daa" onclick="getId(this)">
+                <img src="redtriangle1_test.gif">
+            </div>
+            <div class="box1" id="adb" onclick="getId(this)">
+                <img src="greenstar2_test.gif">
+            </div>
+            <div class="box1" id="bcc" onclick="getId(this)">
+                <img src="yellowcross3_test.gif">
+            </div>
+            <div class="box1" id="cbd" onclick="getId(this)">
+                <img src="bluecircle4_test.gif">
+            </div>
         </div>
+
     </div>
     <script>
         const gifName = [
-            "GreenTriangle3.gif", "RedStar4.gif", "YellowCircle1.gif","BlueTriangle2.gif", 
-            "YellowCircle2.gif", "BlueTriangle3.gif", "GreenTriangle4.gif","RedStar3.gif", 
-            "GreenCross4.gif", "YellowStar1.gif", "GreenCircle3.gif","BlueStar1.gif", 
-            "RedCross2.gif",   "BlueStar3.gif","GreenCross1.gif","YellowStar4.gif",
+            "GreenTriangle3.gif", "RedStar4.gif", "YellowCircle1.gif", "BlueTriangle2.gif",
+            "YellowCircle2.gif", "BlueTriangle3.gif", "GreenTriangle4.gif", "RedStar3.gif",
+            "GreenCross4.gif", "YellowStar1.gif", "GreenCircle3.gif", "BlueStar1.gif",
+            "RedCross2.gif", "BlueStar3.gif", "GreenCross1.gif", "YellowStar4.gif",
             "BlueCross1.gif", "RedCircle2.gif", "RedCross4.gif", "YellowTriangle2.gif",
             "GreenCircle1.gif", "YellowTriangle4.gif", "BlueCross2.gif", "RedCircle3.gif"
         ];
         const gifSymbol = [
-            'aac', 'ddd', 'bba', 'cab', 
+            'aac', 'ddd', 'bba', 'cab',
             'bbb', 'cac', 'aad', 'ddc',
-            'acd', 'bda', 'abc', 'cda', 
-            'dcb', 'cdc', 'aca',  'bdd',
+            'acd', 'bda', 'abc', 'cda',
+            'dcb', 'cdc', 'aca', 'bdd',
             'cca', 'dbb', 'dcd', 'bab',
             'aba', 'bad', 'ccb', 'dbc'
         ];
@@ -192,14 +224,14 @@
         let staraRegula = aktualnyRegula;
         let trafiony = false;
         let bladZach = false;
-        let index1= 0;
+        let index1 = 0;
         let komunikatText = 'Dobrze';
-        const zwiekszIndex = ()=>{
-            if(index1>23){
-                index1=0;
+        const zwiekszIndex = () => {
+            if (index1 > 23) {
+                index1 = 0;
             }
             index1++;
-            return index1-1;
+            return index1 - 1;
         }
         const zgodnoscReguly = (regula, index, karta) => {
             return (gifSymbol[index][regula] == karta[regula]) ? true : false;
@@ -222,7 +254,7 @@
         let startOg = Date.now();
         const czas1 = document.getElementById('czas');
         setInterval(() => {
-            czas1.innerText =  czas(Date.now() - startOg);
+            czas1.innerText = czas(Date.now() - startOg);
         }, 100)
         let gifIndex = zwiekszIndex();
         let obrStr = gifName[gifIndex].toLowerCase();
@@ -292,7 +324,7 @@
                     document.getElementById('blad').innerText = licznikBladSerii;
                     komunikatText = '10 błędów w serii: ZMIANA REGUŁY.';
                     koniec();
-                }else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
+                } else if (zgodnoscReguly(regula[sekwencja[staraRegula][0]], gifIndex, karta.id) && trafiony) {
                     licznikBladPers++;
                 } else {
                     trafiony = false;

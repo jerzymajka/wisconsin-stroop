@@ -7,6 +7,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test sortowania kart z Wisconsin</title>
   <style>
+    @media(max-width: 640px) {
+      img {
+        width: 100%;
+      }
+
+      h1 {
+        color: rgb(42, 20, 238);
+        font-size: 120%;
+      }
+
+      h2 {
+        color: rgb(10, 22, 131);
+        font-size: 110%;
+      }
+
+      h3 {
+        color: rgb(16, 20, 80);
+        font-size: 100%;
+      }
+
+      .container {
+        margin: 0px;
+
+      }
+    }
+
+    @media(min-width: 640px) {
+      .container {
+        margin-top: 15pt;
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+    }
+
     .grid-container {
       display: grid;
       grid-template-columns: auto;
@@ -27,12 +61,6 @@
       padding: 0px;
       font-size: 30px;
       text-align: center;
-    }
-
-    .container {
-      margin-top: 15pt;
-      margin-left: 15%;
-      margin-right: 15%;
     }
 
     .form-group {
@@ -82,9 +110,9 @@
       regułą jest kolor, dwukrotnie kształt i dwukrotnie liczba elementów na karcie. Rejestrowany jest czas oraz ilość
       popełnianych błędów. </p>
     <p>Przed przystąpieniem do wykonania właściwego testu można skorzystać z testu treningowego.</p>
-    <p>W teście treningowym reguła zmienia się tylko raz i wystarczy odgadnąć tylko 5 kart z rzędu do zaliczenia serii.</p>
-    <br>
-    <br>
+    <p>W teście treningowym reguła zmienia się tylko raz i wystarczy odgadnąć tylko 5 kart z rzędu do zaliczenia serii.
+    </p>
+     <br>
     <form role="form">
       <div class="form-group">
         <button class="btn" type="submit" id="btnProba">Przystąp do testu próbnego</button>

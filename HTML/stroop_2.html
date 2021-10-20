@@ -7,33 +7,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Stroop'a - trening</title>
   <style>
-    .grid-container {
-      display: grid;
-      grid-template-columns: auto;
-      background-color: #ebf0f3;
-      padding: 0px;
-    }
+            @media(max-width: 640px) {
+            img {
+                width: 100%;
+            }
 
-    .grid-container1 {
-      display: grid;
-      grid-template-columns: auto auto auto auto;
-      background-color: #ebf0f3;
-      padding: 0px;
-    }
+            h1 {
+                color: rgb(42, 20, 238);
+                font-size: 120%;
+            }
 
-    .grid-item {
-      background-color: rgba(255, 255, 255, 0.8);
-      border: 0px solid rgba(255, 255, 255, 0.479);
-      padding: 0px;
-      font-size: 30px;
-      text-align: center;
-    }
+            h2 {
+                color: rgb(10, 22, 131);
+                font-size: 110%;
+            }
 
-    .container {
-      margin-top: 15pt;
-      margin-left: 10%;
-      margin-right: 10%;
-    }
+            h3 {
+                color: rgb(16, 20, 80);
+                font-size: 100%;
+            }
+
+            .container {
+                margin-top: 5pt;
+            }
+        }
+
+        @media(min-width: 640px) {
+            .container {
+                margin-top: 15pt;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        }
 
     .form-group {
       margin: 10px;
@@ -73,21 +78,22 @@
     <div id='wyniki'>
       <h2>Test Stroop'a - trening</h2>
       <p>Poniżej widzisz 10 słów napisanych czcionką w kolorach: żółty, czarny, czerwony, zielony, niebieski. </p>
+     </div> 
+      <div id="word" style="background-color:darkgray"></div>
+     <div id="pusty">
       <p>Nie czytaj słów, tylko nazwij po kolei kolory. Staraj się mówić głośno i wyraźnie, ale tak szybko, jak możesz.</p>
       <p>Jeśli się pomylisz, <b>nie poprawiaj się</b>, kontynuuj nazywanie.</p>
       <p>Przed rozpoczęciem aplikacja poprosi Cię o pozwolnie na skorzystanie z Twojego mikrofonu.</p>
       <p>Aby rozpocząć kliknij <span style="font-size:125%; color: rgb(85, 106, 226);">Start</span>.</p>
-      <p>Gdy zakończysz, kliknij przycisk <span style="font-size:125%; color: rgb(85, 106, 226);">Gotowe</span> na dole
-        strony. </p>
+      <p>Gdy zakończysz, kliknij przycisk <span style="font-size:125%; color: rgb(85, 106, 226);">Gotowe</span>, który pojawi się na dole strony. </p>
     </div>
-    <div id="word" style="background-color:darkgray"></div>
     <br>
     <p id="rez"></p>
   </div>
   <div id="word2" style="background-color:darkgray"></div>
   <div id="result"></div>
-  <div id="guziki" style='text-align:center'><button class="btn" id="btnStart">Start</button> 
-    <button class="btn"id="btnGotowe">Gotowe</button></div>
+  <div id="guziki" style='text-align: center;'><button class="btn" id="btnStart">Start</button> 
+    <button class="btn"id="btnGotowe" >Gotowe</button></div>
 
   <div id="alert"></div>
   <script>
@@ -122,6 +128,7 @@
     ];
     const btnStart = document.getElementById('btnStart');
     const btnGotowe = document.getElementById('btnGotowe');
+    btnGotowe.style.display = 'none';
     const word = document.getElementById('word');
     const wyniki = document.getElementById('wyniki');
     const guziki = document.getElementById('guziki');
@@ -189,6 +196,9 @@
     })
     btnStart.addEventListener('click', () => {
       wyniki.innerHTML = clockHtml;
+      btnGotowe.style.display = 'initial';
+      btnStart.style.display = 'none';
+      document.getElementById('pusty').innerHTML = null;
       czasStart = Date.now();
       startClock = setInterval(() => {
         clock.innerText = 'Czas w sekundach: ' + czas(Date.now() - czasStart);
@@ -214,6 +224,8 @@
       console.log('koniec')
     };
     btnGotowe.addEventListener('click', () => {
+      //rez.innerText='jerzy majka ';
+      stopClock();
       let czas = Date.now() - czasStart;
       recognition.stop();
       wyniki.innerHTML = htmlWyniki;
@@ -248,6 +260,7 @@
         for (let i = 0; i < 2; i++) {
           html += mojHtml(i);
         }
+        //document.getElementById('word2').innerHTML = 'moje html'
         document.getElementById('word2').innerHTML = html;
         document.getElementById('result').innerHTML = `<h3>Podsumowanie:</h3>
                                     <p>Ilość błędów: ${licznikBlad}</p>
@@ -255,6 +268,7 @@
 
         const btnKoniec = document.getElementById('btnKoniec');
         const btnPowtorz = document.getElementById('btnPowtorz');
+        rez.innerText='';
         btnKoniec.addEventListener('click', () => {
           window.location.replace(base + '/stroop_3' + query);
         });

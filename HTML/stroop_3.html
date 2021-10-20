@@ -7,11 +7,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Stroop'a - część pierwsza</title>
   <style>
-    .container {
-      margin-top: 15pt;
-      margin-left: 5%;
-      margin-right: 10%;
+    @media(max-width: 640px) {
+      img {
+        width: 100%;
+      }
+
+      h1 {
+        color: rgb(42, 20, 238);
+        font-size: 120%;
+      }
+
+      h2 {
+        color: rgb(10, 22, 131);
+        font-size: 110%;
+      }
+
+      h3 {
+        color: rgb(16, 20, 80);
+        font-size: 100%;
+      }
+
+      .container {
+        margin-top: 5pt;
+      }
     }
+
+    @media(min-width: 640px) {
+      .container {
+        margin-top: 15pt;
+        margin-left: 5%;
+        margin-right: 10%;
+      }
+    }
+
 
     .btn {
       font-size: large;
@@ -159,7 +187,7 @@
         for (let i = 0; i < 5; i++) {
           for (let j = 0; j < 5; j++) {
             if (n < len) {
-              if(rezultatArr[n].length > 0 && rezultatArr[n].length < 5){
+              if (rezultatArr[n].length > 0 && rezultatArr[n].length < 5) {
                 n++;
               }
               resultArr[i][j] = '(<i><u>' + rezultatArr[n] + '</u></i>)';
@@ -190,6 +218,7 @@
                           <p>Czas w sekundach: ${czas((Date.now()-1000)- czasStart)}</p>`;
         const btnKoniec = document.getElementById('btnKoniec');
         const btnPowtorz = document.getElementById('btnPowtorz');
+        document.getElementById('rez').innerText='';
         btnKoniec.addEventListener('click', (e) => {
           fetch(href, {
             method: 'post',
