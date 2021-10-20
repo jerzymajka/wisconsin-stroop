@@ -206,7 +206,9 @@
       recognition.start();
     });
     recognition.onresult = function (event) {
-      rez.innerText = moj_color + ' ' + interimResult.toLocaleLowerCase();
+      console.log('rezInterim: '+interimResult.toLowerCase())
+      rez.innerText = moj_color + ' ' + interimResult.toLowerCase();
+      console.log('mojeKolory: '+moj_color)
       interimResult = '';
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
