@@ -275,6 +275,8 @@
             staraRegula = aktualnyRegula;
             trafiony = true;
             aktualnyRegula++;
+            powt.innerHTML = 1 - licznikSekwencja;
+            document.getElementById('ser').innerText = licznikSekwencja + 1;
             //console.log('aktReg: '+aktualnyRegula+' staraReg: '+staraRegula)
             if (aktualnyRegula == 6) {
                 aktualnyRegula = 0;
@@ -339,8 +341,7 @@
                 komunikat.style = "color: rgb(248, 62, 37); text-align: center;"
                 komunikat.innerText = komunikatText;
                 komunikatText = 'Dobrze';
-                powt.innerHTML = 1 - licznikSekwencja;
-                document.getElementById('ser').innerText = licznikSekwencja + 1;
+
             }
             gifIndex = zwiekszIndex();
             obrazek.src = gifName[gifIndex].toLowerCase();
